@@ -1,0 +1,11 @@
+digraph {
+    rankdir=LR;
+    plaintext -> vaulted[label="encrypt"];
+    vaulted -> plaintext[label="decrypt"];
+    vaulted -> plaintext[label="view"];
+    plaintext -> inline[label="encrypt --to-inline"]
+    inline -> vaulted[label="encrypt --from-inline"]
+    inline -> plaintext[label="view --from-inline"];
+    inline -> plaintext[label="decrypt --from-inline"];
+    vaulted -> inline[label="decrypt --to-inline"];
+}
