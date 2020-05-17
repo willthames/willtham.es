@@ -1,4 +1,4 @@
----
++++
 One of the valid criticisms of Ansible is that it has no knowledge of previous state, so on
 every run it has to work out the current state, determine the difference between current state
 and desired state, and then, if differences exist, make reality match that desired state. This

@@ -1,8 +1,7 @@
----
-title: An Introduction to Code Reviews
-date: 2016-11-07 11:30:00
-layout: post
----
++++
+title = "An Introduction to Code Reviews"
+date = 2016-11-07 11:30:00
++++
 Most software development teams have long been doing code reviews, and
 while it's not uncommon amongst system administrators, 
 it's not universally practised.

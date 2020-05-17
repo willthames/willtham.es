@@ -1,6 +1,6 @@
----
-title: So You Want To Test AWS Modules For Ansible
----
++++
+title = "So You Want To Test AWS Modules For Ansible"
++++
 
 <div class="alert alert-info"><span class="glyphicon glyphicon-info-sign"></span>
 This page was updated on 2018-02-28 to better document IAM policy changes,

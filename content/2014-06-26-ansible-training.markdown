@@ -1,8 +1,7 @@
----
-title: Ansible Training
-date: 2014-06-26 20:55:00
-layout: post
----
++++
+title = "Ansible Training"
+date = 2014-06-26 20:55:00
++++
 
 I wrote a slide deck for work for internal training on Ansible. 
 I've created a [public-facing version](/ansible-training).

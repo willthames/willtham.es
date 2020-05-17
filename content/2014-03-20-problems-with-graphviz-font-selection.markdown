@@ -1,8 +1,7 @@
----
-title: Problems with graphviz font selection
-date: 2014-03-20 13:14
-layout: post
----
++++
+title = "Problems with graphviz font selection"
+date = 2014-03-20 13:14
++++
 When tweeting about my recent [Ansible post](/2014/03/17/ansible-layered-configuration-for-aws.html)
 I mentioned that graphviz selection problems were the cause of some delay. [@magneticnorth](https://twitter.com/magneticnorth)
 responded that it was dismaying given the size of the underlying font handling libraries. So I thought I'd give a more detailed

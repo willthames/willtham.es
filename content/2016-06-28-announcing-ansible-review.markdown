@@ -1,8 +1,7 @@
----
-title: Announcing ansible-review
-date: 2016-06-28 06:05:00
-layout: post
----
++++
+title = "Announcing ansible-review"
+date = 2016-06-28 06:05:00
++++
 [`ansible-review`](https://github.com/willthames/ansible-review)
 is coming up to the three month anniversary of the first commit,
 and I've given it little publicity other than an

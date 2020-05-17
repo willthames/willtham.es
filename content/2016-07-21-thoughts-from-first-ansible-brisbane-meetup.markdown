@@ -1,8 +1,7 @@
----
-title: Thoughts from the first Ansible Brisbane meetup
-date: 2016-07-21 12:40:00
-layout: post
----
++++
+title = "Thoughts from the first Ansible Brisbane meetup"
+date = 2016-07-21 12:40:00
++++
 Tonight we had the first [Ansible Brisbane Meetup](https://www.meetup.com/en-AU/Ansible-Brisbane/).
 It was relatively well attended, and there were a lot of interesting questions following the talks.
 

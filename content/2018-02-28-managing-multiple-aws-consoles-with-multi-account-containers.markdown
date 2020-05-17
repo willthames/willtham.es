@@ -1,6 +1,6 @@
----
-title: Managing Multiple AWS Consoles With Multi Account Containers
----
++++
+title = "Managing Multiple AWS Consoles With Multi Account Containers"
++++
 While there are ways of managing multiple AWS account consoles in a single browser
 (such as assuming roles to access other accounts), various constraints might prevent that
 (e.g. accounts owned by third parties to which access should be segregated).

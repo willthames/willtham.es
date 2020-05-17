@@ -1,8 +1,7 @@
----
-title: Techniques for Versioning Ansible II
-date: 2014-09-03 20:30:00
-layout: post
----
++++
+title = "Techniques for Versioning Ansible II"
+date = 2014-09-03 20:30:00
++++
 This is a replacement post for my most recent entry on 
 [techniques for versioning ansible](/2014/08/11/techniques-for-versioning-ansible.html).
 The motivations described within that post remain valid.

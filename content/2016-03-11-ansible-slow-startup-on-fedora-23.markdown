@@ -1,8 +1,7 @@
----
-title: Ansible slow to startup on Fedora 23
-date: 2016-03-11 16:05:00
-layout: post
----
++++
+title = "Ansible slow to startup on Fedora 23"
+date = 2016-03-11 16:05:00
++++
 I was sitting with a colleague helping with some Ansible stuff and I couldn't
 help noticing his playbook runs were taking a minute before the first
 connection to a host.

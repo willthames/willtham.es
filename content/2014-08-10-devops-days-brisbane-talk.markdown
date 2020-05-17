@@ -1,8 +1,7 @@
----
-title: Devops Days Brisbane Talk
-date: 2014-08-10 14:41:00
-layout: post
----
++++
+title = "Devops Days Brisbane Talk"
+date = 2014-08-10 14:41:00
++++
 At [Devops Days Brisbane](http://devopsdays.org/events/2014-brisbane/) I gave a talk called
 "Designing and Devoloping Software for Operations", providing my thoughts and advice to 
 help write software that is easy to operate.

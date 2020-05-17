@@ -1,6 +1,6 @@
----
-title: "connection: local vs delegate_to: localhost"
----
++++
+title = "connection: local vs delegate_to: localhost"
++++
 Performing tasks locally is a common operation when working with an API of some
 kind&mdash;typical use cases are cloud services, network devices, cluster
 management. There are three ways of achieving this in Ansible: `connection:

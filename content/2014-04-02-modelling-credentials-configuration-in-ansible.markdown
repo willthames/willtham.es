@@ -1,8 +1,7 @@
----
-title: Modelling Credentials Configuration in Ansible
-date: 2014-04-02 21:06
-layout: post
----
++++
+title = "Modelling Credentials Configuration in Ansible"
+date = 2014-04-02 21:06
++++
 One of the most common things to configure in an application is some kind
 of credentials based connection. Typically this will be to a database or 
 an API endpoint, but it doesn't really matter too much - the examples in

@@ -1,8 +1,7 @@
----
-title: Using Ansible's command and shell modules properly
-date: 2016-09-21 11:01:00
-layout: post
----
++++
+title = "Using Ansible's command and shell modules properly"
+date = 2016-09-21 11:01:00
++++
 I realise I have quite strong opinions on the `command` and
 `shell` modules in Ansible. There are now four independent checks in
 [ansible-lint](https://github.com/willthames/ansible-lint) for ways to

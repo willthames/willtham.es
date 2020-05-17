@@ -1,8 +1,7 @@
----
-title: Devops Brisbane Ansible talk
-date: 2013-08-24 19:00
-layout: post
----
++++
+title = "Devops Brisbane Ansible talk"
+date = 2013-08-24 19:00
++++
 [Source code](https://github.com/willthames/devops-bris-ansible.git)
 
 To view the slides locally, you can use:

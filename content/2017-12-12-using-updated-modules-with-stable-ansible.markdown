@@ -1,8 +1,7 @@
----
-title: Using updated modules, libraries and plugins with stable Ansible
-date: 2017-12-12 10:00:00
-layout: post
----
++++
+title = "Using updated modules, libraries and plugins with stable Ansible"
+date = 2017-12-12 10:00:00
++++
 <div class="alert alert-info"><span class="glyphicon glyphicon-info-sign"></span>
 This page was updated 2020-05-16 to incorporate how to use collections to the
 same effect
@@ -32,7 +31,7 @@ a README.md file in the library directory. For modules, it looks a bit like:
 
 ```
 |Module                     | PR                                            | Notes           |
-|---------------------------|-----------------------------------------------|-----------------|
+|+++++++++++++++++++++++++++|+++++++++++++++++++++++++++++++++++++++++++++--|+++++++++++++++--|
 |cloudfront_distribution.py | https://github.com/ansible/ansible/pull/31284 | Unmerged        |
 |ec2_placement_group.py     | https://github.com/ansible/ansible/pull/33139 | Available in 2.5|
 ```

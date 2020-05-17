@@ -1,8 +1,7 @@
----
-title: Refactoring ansible-lint for greater flexibility
-date: 2014-08-10 17:36:00
-layout: post
----
++++
+title = "Refactoring ansible-lint for greater flexibility"
+date = 2014-08-10 17:36:00
++++
 I first wrote [ansible-lint](http://github.com/willthames/ansible-lint) nearly a year ago.
 The aim behind my implementation was to be able to spot common antipatterns and indeed bugs
 and report them to users. 

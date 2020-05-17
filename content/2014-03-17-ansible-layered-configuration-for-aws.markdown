@@ -1,8 +1,7 @@
----
-title: Ansible layered configuration for AWS
-date: 2014-03-17 18:34
-layout: post
----
++++
+title = "Ansible layered configuration for AWS"
+date = 2014-03-17 18:34
++++
 [Ansible](http://ansible.com/)'s system for managing configuration of hosts is
 inventory. The documentation on inventory - both static and dynamic - is a 
 good reference but I'd like to provide further context through example. 
@@ -48,7 +47,7 @@ either in the boto configuration file or environment variables.
 
 A minimal playbook looks like:
 {% highlight yaml %}
----
++++
 - hosts: 127.0.0.1
   connection: local
 
@@ -141,7 +140,7 @@ simplicity's sake.
 ### create-ec2-instance.yml
 {% highlight yaml %}
 {% raw %}
----
++++
 - hosts: all
   connection: local
 

@@ -1,8 +1,7 @@
----
-title: Devops Days Melbourne Talk
-date: 2015-07-17 08:05:00
-layout: post
----
++++
+title = "Devops Days Melbourne Talk"
+date = 2015-07-17 08:05:00
++++
 At [Devops Days Melbourne](http://devopsdays.org/events/2015-melbourne/) I gave
 a companion talk to [last year's](/2014/08/10/devops-days-brisbane-talk.html) talk.
 This year's is called "What Operations can learn from Developers" and talks about

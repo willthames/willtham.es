@@ -1,8 +1,7 @@
----
-title: An Ansible Setup, annotated
-date: 2015-04-06 11:00:00
-layout: post
----
++++
+title = "An Ansible Setup, annotated"
+date = 2015-04-06 11:00:00
++++
 While everyone has their own Ansible setup, I've found simple tips
 and tricks over the year really helpful, and would like to take
 this opportunity to share.

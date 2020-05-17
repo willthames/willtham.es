@@ -1,8 +1,7 @@
----
-title: An Ansible Inventory Grapher
-date: 2014-04-03 21:00
-layout: post
----
++++
+title = "An Ansible Inventory Grapher"
+date = 2014-04-03 21:00
++++
 Inspired by my recent efforts to handcraft Ansible inventory graphs, 
 and wanting to be able to quickly see what groups are used for 
 a particular host in Ansible inventory, I decided to generate some

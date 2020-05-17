@@ -1,8 +1,7 @@
----
-title: Techniques for Versioning Ansible
-date: 2014-08-11 20:56:00
-layout: post
----
++++
+title = "Techniques for Versioning Ansible"
+date = 2014-08-11 20:56:00
++++
 First, let's start with the why. With source control and inventory, do we actually need 
 to version Ansible playbooks or roles? 
 
@@ -114,7 +113,7 @@ superseded. Status names could be improved (for example `BETA` or `DEVEL` rather
 
 {% highlight yaml %}
 # Status: DRAFT
----
++++
 dependencies:
 - { role: amazing/0.0.1 }
 {% endhighlight %}

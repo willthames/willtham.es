@@ -1,8 +1,7 @@
----
-title: Welcome to my new blog
-date: 2014-01-13 21:48
-layout: post
----
++++
+title = "Welcome to my new blog"
+date = 2014-01-13 21:48
++++
 A new year brings a new blog. I've been doing lots of cool things recently in
 the world of tech, particularly with AWS and Ansible, and it's time to write 
 some of my learnings down so that others can benefit. 

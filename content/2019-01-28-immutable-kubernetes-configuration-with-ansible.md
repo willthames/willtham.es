@@ -1,8 +1,7 @@
----
-title: Immutable Kubernetes configuration with Ansible
-date: 2019-01-28 10:00:00
-layout: post
----
++++
+title = "Immutable Kubernetes configuration with Ansible"
+date = 2019-01-28 10:00:00
++++
 This post touches on a key component of my [Managing Kubernetes is Easy With
 Ansible](https://www.ansible.com/managing-kubernetes-is-easy-with-ansible)
 talk that I gave at AnsibleFest 2018.
