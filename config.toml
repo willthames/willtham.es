@@ -11,5 +11,11 @@ highlight_code = true
 # Whether to build a search index to be used later on by a JavaScript library
 build_search_index = false
 
+# You can put any kind of data in there and it
+# will be accessible in all templates
 [extra]
-# Put all your custom variables here
+subtitle = "Example subtitle"
+copyright = "Copyright <i class=\"fas fa-heart\" style=\"color: red;\"></i> authors year"
+analytics = ""
+katex_enable = true
+instantpage_enable = true
