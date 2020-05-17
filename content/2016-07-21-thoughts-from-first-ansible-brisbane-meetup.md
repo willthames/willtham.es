@@ -1,6 +1,6 @@
 +++
 title = "Thoughts from the first Ansible Brisbane meetup"
-date = 2016-07-21 12:40:00
+date = 2016-07-21T12:40:00Z
 +++
 Tonight we had the first [Ansible Brisbane Meetup](https://www.meetup.com/en-AU/Ansible-Brisbane/).
 It was relatively well attended, and there were a lot of interesting questions following the talks.

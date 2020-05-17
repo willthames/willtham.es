@@ -1,6 +1,6 @@
 +++
 title = "Immutable Kubernetes configuration with Ansible"
-date = 2019-01-28 10:00:00
+date = 2019-01-28T20:00:00Z
 +++
 This post touches on a key component of my [Managing Kubernetes is Easy With
 Ansible](https://www.ansible.com/managing-kubernetes-is-easy-with-ansible)

@@ -1,6 +1,6 @@
 +++
 title = "Ansible layered configuration for AWS"
-date = 2014-03-17 18:34
+date = 2014-03-17T18:34:00Z
 +++
 [Ansible](http://ansible.com/)'s system for managing configuration of hosts is
 inventory. The documentation on inventory - both static and dynamic - is a 

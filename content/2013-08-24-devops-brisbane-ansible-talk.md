@@ -1,6 +1,6 @@
 +++
 title = "Devops Brisbane Ansible talk"
-date = 2013-08-24 19:00
+date = 2013-08-24T19:00:00Z
 +++
 [Source code](https://github.com/willthames/devops-bris-ansible.git)
 

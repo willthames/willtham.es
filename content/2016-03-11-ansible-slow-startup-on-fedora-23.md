@@ -1,6 +1,6 @@
 +++
 title = "Ansible slow to startup on Fedora 23"
-date = 2016-03-11 16:05:00
+date = 2016-03-11T16:05:00Z
 +++
 I was sitting with a colleague helping with some Ansible stuff and I couldn't
 help noticing his playbook runs were taking a minute before the first

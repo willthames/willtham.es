@@ -1,6 +1,6 @@
 +++
 title = "Modelling Credentials Configuration in Ansible"
-date = 2014-04-02 21:06
+date = 2014-04-02T21:06:00Z
 +++
 One of the most common things to configure in an application is some kind
 of credentials based connection. Typically this will be to a database or 

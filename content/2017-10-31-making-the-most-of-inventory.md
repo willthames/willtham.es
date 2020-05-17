@@ -1,3 +1,7 @@
++++
+title = "Making the most of inventory"
+date = 2017-10-31T19:00:00Z
++++
 When using Ansible to consume APIs such as cloud services, the
 logic runs from the controller machine. As a result, people tend
 to think that as this runs locally, using `hosts: localhost` is

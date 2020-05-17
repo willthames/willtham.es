@@ -1,6 +1,6 @@
 +++
 title = "Techniques for Versioning Ansible"
-date = 2014-08-11 20:56:00
+date = 2014-08-11T20:56:00Z
 +++
 First, let's start with the why. With source control and inventory, do we actually need 
 to version Ansible playbooks or roles? 

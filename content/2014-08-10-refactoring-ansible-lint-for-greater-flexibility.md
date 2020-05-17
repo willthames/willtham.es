@@ -1,6 +1,6 @@
 +++
 title = "Refactoring ansible-lint for greater flexibility"
-date = 2014-08-10 17:36:00
+date = 2014-08-10T17:36:00Z
 +++
 I first wrote [ansible-lint](http://github.com/willthames/ansible-lint) nearly a year ago.
 The aim behind my implementation was to be able to spot common antipatterns and indeed bugs

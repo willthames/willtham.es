@@ -1,6 +1,6 @@
 +++
 title = "Ansible Training"
-date = 2014-06-26 20:55:00
+date = 2014-06-26T20:55:00Z
 +++
 
 I wrote a slide deck for work for internal training on Ansible. 

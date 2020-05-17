@@ -1,6 +1,6 @@
 +++
 title = "Announcing ansible-review"
-date = 2016-06-28 06:05:00
+date = 2016-06-28T06:05:00Z
 +++
 [`ansible-review`](https://github.com/willthames/ansible-review)
 is coming up to the three month anniversary of the first commit,

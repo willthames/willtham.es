@@ -1,6 +1,6 @@
 +++
 title = "Problems with graphviz font selection"
-date = 2014-03-20 13:14
+date = 2014-03-20T13:14:00Z
 +++
 When tweeting about my recent [Ansible post](/2014/03/17/ansible-layered-configuration-for-aws.html)
 I mentioned that graphviz selection problems were the cause of some delay. [@magneticnorth](https://twitter.com/magneticnorth)

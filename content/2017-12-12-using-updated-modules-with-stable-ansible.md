@@ -1,6 +1,6 @@
 +++
 title = "Using updated modules, libraries and plugins with stable Ansible"
-date = 2017-12-12 10:00:00
+date = 2017-12-12T10:00:00Z
 +++
 <div class="alert alert-info"><span class="glyphicon glyphicon-info-sign"></span>
 This page was updated 2020-05-16 to incorporate how to use collections to the

@@ -1,6 +1,6 @@
 +++
 title = "A Worked Example of Role Versioning"
-date = 2015-04-03 11:00:00
+date = 2015-04-03T11:00:00Z
 +++
 This post is an example of how to use versioning of roles with playbooks.
 The initial premises are these:

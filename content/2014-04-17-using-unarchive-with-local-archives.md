@@ -1,7 +1,6 @@
 +++
 title = "Using unarchive with local archives"
-date = 2014-04-17 11:25
-categories: tips
+date = 2014-04-17T11:25:00Z
 +++
 Ansible's [unarchive module](http://docs.ansible.com/unarchive_module.html) has been around a while but 
 it's not always been suitable for use on archives local to the destination node (especially when running

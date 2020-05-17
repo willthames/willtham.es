@@ -1,3 +1,7 @@
++++
+title = "Generating inventory"
+date = 2017-11-01T19:00:00Z
++++
 As mentioned in [yesterday's blogpost](/2017/10/31/making-the-most-of-inventory.html),
 using a combination of environments, applications and operations can cause a cartesian
 explosion in hosts and groups to manage.
