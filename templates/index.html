@@ -102,16 +102,43 @@
             {%- endblock content %}
         </main>
 
-     
       <footer class="l-footer">
-          {% block footer -%}
-          <p class="p-copyright">
-              {% if config.extra.copyright -%}
-              {% set content = config.extra.copyright | markdown(inline=true) %}
-              {{ post_macros::polish(content=content) }}
-              {%- endif %}
-          </p>
-          {%- endblock footer %}
+        {% block footer -%}
+        <div class="flex-grid">
+          <ul class="contact-list">
+            <li><i class="fa fas-envelope" aria-hidden="true"></i> <a href="mailto:{{ config.extra.email }}">{{ config.extra.email }}</a></li>
+          </ul>
+
+          <ul class="social-media-list">
+            {% if config.extra.github_username %}
+            <li>
+              <a href="https://github.com/{{ config.extra.github_username }}">
+                <i class="fab fa-github"></i>
+                <span class="username">{{ config.extra.github_username }}</span>
+              </a>
+            </li>
+            {% endif %}
+          </ul>
+          <ul class="social-media-list">
+            {% if config.extra.twitter_username %}
+            <li>
+              <a href="https://twitter.com/{{ config.extra.twitter_username }}">
+                <i class="fab fa-twitter"></i>
+                <span class="username">{{ config.extra.twitter_username }}</span>
+              </a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+
+        <p class="p-copyright">
+          <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/au/"><img alt="Creative Commons Licence"
+            style="border-width:0" src="https://i.creativecommons.org/l/by-sa/3.0/au/88x31.png" /></a>
+          This work is licensed under a
+          <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/au/">Creative Commons Attribution-ShareAlike 3.0 Australia License</a>
+        </p>
+        {%- endblock footer %}
+
       </footer>
 
       {% if config.extra.analytics -%}

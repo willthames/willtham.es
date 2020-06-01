@@ -15,7 +15,7 @@ a [dot source file](https://github.com/willthames/willthames.github.io/blob/mast
 Font selection in dot labels can be done a number of ways, but the resolution of the fonts (i.e. 
 what system fonts to use to render the fonts requested in the dotfile) is where things go wrong. 
 Here's an example dot file:
-{% highlight text %}
+```
 digraph dummy { 
   a -> b -> c -> d -> e -> f -> g -> h -> i;
   a [fontname="Times New Roman, Bold"]
@@ -28,11 +28,11 @@ digraph dummy {
   h [fontname="Times-Bold"]
   i [fontname="Times-New-Roman-Bold"]
 }
-{% endhighlight %}
+```
 
 And the results of the dot conversion (on a Fedora 20 machine with fairly standard fonts - it didn't
 go better on a different Fedora 20 machine with the MS core fonts installed):
-{% highlight text %}
+```
 fontname: "Times New Roman, Bold" resolved to: (PangoCairoFcFont) "Liberation Serif, Bold" /usr/share/fonts/liberation/LiberationSerif-Bold.ttf
 fontname: "Times New Roman Bold" resolved to: (PangoCairoFcFont) "DejaVu Sans, Bold" /usr/share/fonts/dejavu/DejaVuSans-Bold.ttf
 fontname: "Times, Bold" resolved to: (PangoCairoFcFont) "Nimbus Roman No9 L, Medium" /usr/share/fonts/default/Type1/n021004l.pfb
@@ -42,7 +42,7 @@ fontname: "Times-Roman Bold" resolved to: (PangoCairoFcFont) "DejaVu Sans, Bold"
 fontname: "Times-Roman-Bold" resolved to: (PangoCairoFcFont) "DejaVu Sans, Book" /usr/share/fonts/dejavu/DejaVuSans.ttf
 fontname: "Times-Bold" resolved to: (ps:pango  Nimbus Roman No9 L, ) (PangoCairoFcFont) "Nimbus Roman No9 L, Regular" /usr/share/fonts/default/Type1/n021003l.pfb
 fontname: "Times-New-Roman-Bold" resolved to: (PangoCairoFcFont) "DejaVu Sans, Book" /usr/share/fonts/dejavu/DejaVuSans.ttf
-{% endhighlight %}
+```
 
 There's very little consistency or reason to why certain fonts resolve to DejaVu Sans and others resolve to non Bold versions.
 Only "Times New Roman, Bold" resolves to anything reasonable. And that was thanks to a handy hint in a 

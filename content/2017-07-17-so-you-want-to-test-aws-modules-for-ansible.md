@@ -2,7 +2,7 @@
 title = "So You Want To Test AWS Modules For Ansible"
 +++
 
-<div class="alert alert-info"><span class="glyphicon glyphicon-info-sign"></span>
+<div class="alert alert-info"><i class="fas fa-info-circle"></i>
 This page was updated on 2018-02-28 to better document IAM policy changes,
 the aliases file, YAML anchors for testing credentials</div>
 
@@ -142,10 +142,10 @@ and then update that file to include this new secret key and access key.
 It's also worth adding the following for `region` if you're not using us-east-1
 
 ```
-{% raw %}
+
 aws_region: us-east-2
 ec2_region: "{{ aws_region }}"
-{% endraw %}
+
 ```
 
 Note: The credentials in ~/.aws/credentials and cloud-config-aws.yml should be
@@ -156,10 +156,10 @@ aws sts get-caller-identity --profile=$ADMIN_PROFILE
 ```
 
 ```
-{% raw %}
+
 ansible -m shell -a 'AWS_SECRET_ACCESS_KEY={{ aws_secret_key }} AWS_ACCESS_KEY_ID={{ aws_access_key }} aws sts get-caller-identity' \
   -e @test/integration/cloud-config-aws.yml localhost
-{% endraw %}
+
 ```
 
 The first of these should return your administrator user. The second of these
@@ -201,7 +201,7 @@ For your module, you will need:
 * `test/integration/module_name/aliases`
 * `test/integration/module_name/tasks/main.yml`
 
-<div class="alert alert-info"><span class="glyphicon glyphicon-info-sign"></span>
+<div class="alert alert-info"><i class="fas fa-info-circle"></i>
 Previously, I said here that `meta/main.yml` was required, but it isn't&mdash;most of
 the AWS module test suites don't need to specify any dependencies at all.</div>
 
@@ -236,7 +236,7 @@ Before running any tasks, set up the account credentials in a reusable YAML
 anchor for use in each AWS task.
 
 ```
-{% raw %}
+
 - block:
   - name: set up AWS credentials
     set_fact:
@@ -270,7 +270,7 @@ anchor for use in each AWS task.
       name: "{{ resource_prefix }}-more-name"
       ...
     ignore_errors: yes
-{% endraw %}
+
 ```
 
 
@@ -341,7 +341,7 @@ and debug AWS modules for Ansible. There are almost certainly errors, omissions,
 things that *I* could learn to do better.
 
 If you have any suggestions for improvement, please raise an issue or PR
-on https://github.com/willthames/willthames.github.io or just let me know on Twitter or email (links below). Thanks!
+on https://github.com/willthames/willtham.es or just let me know on Twitter or email (links below). Thanks!
 
 ## Thanks
 

@@ -1,0 +1,12 @@
+.alert {
+  padding: 3px;
+  margin: 3px;
+}
+
+.alert.alert-info {
+  background-color: skyblue;
+}
+
+.alert.alert-warning {
+  background-color: gold;
+}

@@ -1,6 +1,8 @@
 # The URL the site will be built for
 base_url = "https://willtham.es"
 
+title = "Will Thames' tech blog"
+
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = true
 
@@ -14,8 +16,10 @@ build_search_index = false
 # You can put any kind of data in there and it
 # will be accessible in all templates
 [extra]
-subtitle = "Example subtitle"
-copyright = "Copyright <i class=\"fas fa-heart\" style=\"color: red;\"></i> authors year"
-analytics = ""
+subtitle = "Lessons from working and playing with things like Kubernetes, AWS, Ansible, and others"
+analytics = "UA-34904722-3"
 katex_enable = true
 instantpage_enable = true
+github_username = "willthames"
+twitter_username = "willthames"
+email = "will@thames.id.au"

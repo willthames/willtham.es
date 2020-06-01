@@ -8,9 +8,9 @@ local`, `delegate_to: localhost` and `local_action`. The last is rarely seen the
 days and can be deemed equivalent to `delegate_to: localhost` in terms of
 advantages and disadvantages, but with the additional disadvantage of being
 a very unusual style, adding a readability penalty.
-
+<!-- more -->
 In a previous post I talked about the
-[runner pattern](http://willthames.github.io/2017/10/31/making-the-most-of-inventory.html)
+[runner pattern](/2017/10/31/making-the-most-of-inventory.html)
 which allows better use of inventory for different scenarios even when the
 controller is localhost. `connection: local` behaves very differently
 if the host is `localhost` or a 'runner' host, which is surprising.
@@ -116,17 +116,17 @@ fakehost                   : ok=3    changed=0    unreachable=0    failed=0
 localhost                  : ok=1    changed=0    unreachable=0    failed=0
 ```
 
-{% raw %}
+
 The easiest way to fix this is to set `ansible_python_interpreter: "{{ ansible_playbook_python }}"`.
 My preferred approach is in `group_vars/all` if all tasks run locally, or
 `group_vars/runner` if using the runner pattern&mdash;but, as with below, at playbook vars
 level also works.
-{% endraw %}
+
 
 In conclusion, I much prefer `connection: local` for the runner pattern now that
 `ansible_python_interpreter` can be set dynamically.
 
-{% raw %}
+
 ```
 - hosts: fakehost
   connection: local
@@ -138,7 +138,7 @@ In conclusion, I much prefer `connection: local` for the runner pattern now that
   - name: runner host using local connection and ansible_python_interpreter set
     boto3_facts:
 ```
-{% endraw %}
+
 
 ```
 PLAY [fakehost] ******************************************************************************************************************

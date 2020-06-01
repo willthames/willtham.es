@@ -6,7 +6,7 @@ A colleague reported some strange behaviour regarding Ansible, in particular wit
 
 I created a simplish test-case (I could have made it simpler but wanted to make it safish for other people to use)
 
-{% highlight yaml %}
+```
 - hosts: localhost
   connection: local
 
@@ -20,11 +20,11 @@ I created a simplish test-case (I could have made it simpler but wanted to make 
 
   - name: show bad effects of pkill -f
     action: shell pkill -IO -f {{process_string.stdout}} || true
-{% endhighlight %}
+```
 
 Running this with `ansible-playbook pkilldemo.yml -v` shows the problem:
 
-{% highlight text %}
+```
 PLAY [localhost] ************************************************************** 
 
 GATHERING FACTS *************************************************************** 
@@ -48,7 +48,7 @@ PLAY RECAP ********************************************************************
            to retry, use: --limit @/home/will/pkilldemo.retry
 
            localhost                  : ok=3    changed=1    unreachable=0    failed=1  
-{% endhighlight %}
+```
 
 So running `pkill -IO -f pattern_to_search_for || true` returns `-29`
 (where `SIGIO` is signal `29` on my machine). 
@@ -56,7 +56,7 @@ So running `pkill -IO -f pattern_to_search_for || true` returns `-29`
 Adding the following to the above playbook allows us to see different
 success and failure scenarios:
 
-{% highlight yaml %}
+```
     ignore_errors: True
 
   - name: works ok without -f 
@@ -72,7 +72,7 @@ success and failure scenarios:
   - name: what we should actually run
     action: raw pkill -f {{process_string.stdout}}
     ignore_errors: True
-{% endhighlight %}
+```
 
 After running the resulting playbook (that playbook and output are
 [available as a gist](https://gist.github.com/willthames/ee40bd6d9b5eebb9b8eb)),
@@ -97,7 +97,7 @@ that I have `forks = 1` in my ansible config file!
 To obtain the module python script, you can set the `ANSIBLE_KEEP_REMOTE_FILES` environment variable, either
 using `export ANSIBLE_KEEP_REMOTE_FILES=1` or 
 
-{% highlight text %}
+```
 [will@fedora pkilldemo]$ ANSIBLE_KEEP_REMOTE_FILES=1 ansible-playbook pkilldemo.yml -vvv
 
 PLAY [localhost] ************************************************************** 
@@ -117,13 +117,13 @@ TASK: [show bad effects of pkill -f] ******************************************
 <localhost> PUT /tmp/tmp39O8iv TO /home/will/.ansible/tmp/ansible-tmp-1401256918.15-50781745619374/command
 <localhost> EXEC ['/bin/sh', '-c', u'LC_CTYPE=en_US.UTF-8 LANG=en_US.UTF-8 /usr/bin/python /home/will/.ansible/tmp/ansible-tmp-1401256918.15-50781745619374/command']
 failed: [localhost] => {"changed": true, "cmd": "pkill -IO -f Ki5ViZNY4EIRaf2JDqvQ || true ", "delta": "0:00:00.017252", "end": "2014-05-28 16:01:58.302777", "rc": -29, "start": "2014-05-28 16:01:58.285525", "warnings": []}
-{% endhighlight %}
+```
 
 So I can then run `python  /home/will/.ansible/tmp/ansible-tmp-1401256918.15-50781745619374/command` to repeat the task
-{% highlight text %}
+```
 [will@fedora pkilldemo]$ python  /home/will/.ansible/tmp/ansible-tmp-1401256918.15-50781745619374/command
 {"changed": true, "end": "2014-05-28 16:03:49.657242", "stdout": "", "cmd": "pkill -IO -f Ki5ViZNY4EIRaf2JDqvQ || true ", "start": "2014-05-28 16:03:49.646183", "delta": "0:00:00.011059", "stderr": "", "rc": -29, "warnings": []}
-{% endhighlight %}
+```
 
 At this point it's probably worth a brief exposition of how the shell 
 module works in Ansible. 
@@ -140,10 +140,10 @@ Anyway, the end result is that the 213 line command module gets expanded to 1419
 The line I'm interested is the same either way - it's line 140, 
 where the command gets executed. So I open up the script and add 
 
-{% highlight text %}
+```
 import pdb
 pdb.set_trace()
-{% endhighlight %}
+```
 
 just before line 140, and run it again. 
 
@@ -151,18 +151,18 @@ The python docs have some good instructions on [how to use the debugger](https:/
 After stepping through the debugger enough, I realise the eventual 
 result is that python is going to kick off a shell that looks like
 
-{% highlight text %}
+```
 sh -c 'pkill -IO -f Ki5ViZNY4EIRaf2JDqvQ || true'
-{% endhighlight %}
+```
 And, sure enough, that matches itself, and kills itself before it 
 gets to the `true`:
 
-{% highlight text %}
+```
 [will@fedora ansible (devel)]$ sh -c 'pkill -IO -f bobbins || true' 
 I/O possible
 [will@fedora ansible (devel)]$ echo $?
 157
-{% endhighlight %}
+```
 
 where 157 is 128 + 29.
 
@@ -179,9 +179,9 @@ debugging techniques to get to the cause.
 
 And the actual solution to the problem was to use `ignore_errors` rather
 than using `true` in the shell to hide the error.
-{% highlight text %}
+```
   name: kill process if running
   action: command pkill -f bobbins
   ignore_errors: True
-{% endhighlight %}
+```
 

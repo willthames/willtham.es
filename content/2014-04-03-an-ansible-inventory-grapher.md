@@ -19,7 +19,7 @@ choose fonts or shapes, the program chooses for you!)
 The result is in my [ansible-inventory-grapher Github repo](https://www.github.com/willthames/ansible-inventory-grapher) and I have an example from
 my [ansible-ec2-example](https://www.github.com/willthames/ansible-ec2-example)
 inventory:
-{% highlight text %}
+```
 $ bin/ansible-inventory-grapher
 Usage: ansible-inventory-grapher [options] host1 [host2 ...]
 
@@ -31,20 +31,20 @@ Options:
                    ["{hostname}.dot"]
 
 $ bin/ansible-inventory-grapher -i ../ansible-ec2-example/inventory/hosts prod-web-server-78a prod-web-server-28a -d test --format "test-{hostname}.dot"
-{% endhighlight %}
+```
 (The above assumes that you've downloaded both repositories under a common parent - I use ~/src/)
 
 The resulting graphs can then be converted to pngs using:
-{% highlight text %}
+```
 for f in test/*.dot ; do dot -Tpng -o test/`basename $f .dot`.png $f; done
-{% endhighlight %}
+```
 (Again, the above assumes graphviz is installed - use your package manager
 of choice for that - yum, apt-get, brew, chocolatey(?))
 
 That then results in a reasonable looking inventory graph for e.g. 
 prod-web-server-78a:
 <div class="clearfix">
-<img src="/images/prod-web-78a.png" class="img-thumbnail">
+<img src="{{ get_url(path="/images/prod-web-78a.png") }}" class="img-thumbnail">
 </div>
 
 ### Improvements

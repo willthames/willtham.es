@@ -16,12 +16,10 @@ For simplicity's sake, we'll assume we're trying to write a file called
 config.properties that has database configuration in the form of a simple
 jdbc type URL - e.g.
 
-{% highlight text %}
-{% raw %}
+```
 customerdb=jdbc:postgresql://db1.prod.example.com:3306/customers?user=webapp&password=changeme
 storedb=jdbc:postgresql://db2.prod.example.com:3306/store?user=webapp&password=changeme2
-{% endraw %}
-{% endhighlight %}
+```
 
 In terms of things that remain the same between environments, the DB type, 
 DB name and username are likely to be consistent, and password, DB servers, 
@@ -40,44 +38,37 @@ inventory files, with the exception of DB passwords which will be stored
 in separate variable files (in a separate repo, or even using ansible vault)
 
 <div class="clearfix">
-<img src="/images/webapp.png" class="img-thumbnail">
+<img src="{{ get_url(path="images/webapp.png") }}" class="img-thumbnail">
 </div>
 
 There are a number of ways to achieve this in Ansible.
 <h2>Flat configuration strings</h2>
 <h3>inventory/group_vars/all.yml</h3>
-{% highlight text %}
-{% raw %}
+
+```
 customerdb_dbname: customers
 storedb_dbname: store
-{% endraw %}
-{% endhighlight %}
+```
 
 <h3>inventory/group_vars/production.yml</h3>
-{% highlight text %}
-{% raw %}
+```
 customerdb_host=db1.prod.example.com
 customerdb_port=3306
 storedb_host=db2.prod.example.com
 storedb_port=3306
-{% endraw %}
-{% endhighlight %}
+```
 
 <h3>inventory/group_vars/web.yml</h3>
-{% highlight text %}
-{% raw %}
+```
 customerdb_user=webapp
 storedb_user=webapp
-{% endraw %}
-{% endhighlight %}
+```
 
 <h3>web/templates/config.properties.tmpl.v1</h3>
-{% highlight text %}
-{% raw %}
+```
 customerdb=jdbc:postgresql://{{customerdb_host}}:{{customerdb_port}}/{{customerdb_dbname}}?user={{customerdb_user}}&password={{customerdb_password}}
 storedb=jdbc:postgresql://{{storedb_host}}:{{customerdb_port}}/{{storedb_dbname}}?user={{storedb_user}}&password={{storedb_password}}
-{% endraw %}
-{% endhighlight %}
+```
 
 <h2>Hierarchical configuration</h2>
 We can use hierarchical dictionaries of properties to configure properties
@@ -86,23 +77,20 @@ we can have a customerdb object that has a dbname property. And the
 storedb will have similar properties.
 
 
-<div class="alert alert-info"><span class="glyphicon glyphicon-info-sign"></span> Set <a href="http://docs.ansible.com/intro_configuration.html#hash-behaviour">hash_behaviour</a> to merge for this to work
+<div class="alert alert-info"><i class="fas fa-info-circle"></i> Set <a href="http://docs.ansible.com/intro_configuration.html#hash-behaviour">hash_behaviour</a> to merge for this to work
 </div>
 
 ### inventory/group_vars/all.yml
-{% highlight text %}
-{% raw %}
+```
 databases:
   customerdb:
     dbname: customers
   storedb:
     dbname: store
-{% endraw %}
-{% endhighlight %}
+```
 
 ### inventory/group_vars/production.yml
-{% highlight text %}
-{% raw %}
+```
 databases:
   customerdb:
     host: db1.prod.example.com
@@ -110,19 +98,16 @@ databases:
   storedb:
     host: db2.prod.example.com
     port: 3306
-{% endraw %}
-{% endhighlight %}
+```
 
 ### inventory/group_vars/web.yml
-{% highlight text %}
-{% raw %}
+```
 databases:
   customerdb:
     user: webapp
   storedb:
     user: webapp
-{% endraw %}
-{% endhighlight %}
+```
 
 This version of the template is more sophisticated (and more complicated) but
 allows both DB connection strings to be expressed in a for loop. 
@@ -130,13 +115,11 @@ The modelling of the credentials (see below under Secrets) allows us to
 map per-database usernames and passwords. 
 
 ### web/templates/config.properties.tmpl.v2
-{% highlight text %}
-{% raw %}
+```
 {% for dbkey, db in databases.iteritems() %}
 {{ dbkey }}=jdbc:postgresql://{{db.host}}:{{db.port}}/{{db.dbname}}?user={{db.user}}&password={{db.credentials[db.user]}}
 {% endfor %}
-{% endraw %}
-{% endhighlight %}
+```
 
 Before we use this template, we'll discuss how we handle secrets.
 
@@ -150,8 +133,7 @@ illustration, but it to keep sensitive information out of the playbooks
 repository it would perhaps be in a separate, more locked-down repo.
 
 ### ../../secrets/dbsecrets.yml
-{% highlight text %}
-{% raw %}
+```
 # v1
 customerdb_password: changeme
 storedb_password: changeme2
@@ -164,12 +146,10 @@ databases:
   customerdb:
     credentials:
       webapp: changeme
-{% endraw %}
-{% endhighlight %}
+```
 
 ### web/playbooks/dbconfig.yml
-{% highlight text %}
-{% raw %}
+```
 - hosts: web
   connection: local
   vars_files:
@@ -181,15 +161,14 @@ databases:
 
   - name: create v2 config.properties
     action: template src=../templates/config.properties.tmpl.v2 dest=/tmp/config.properties.v2
-{% endraw %}
-{% endhighlight %}
+```
 
 Running this then generates two almost identical configuration files 
 (the order of the two DB configurations is not guaranteed - which 
 shouldn't matter in general).
 
-{% highlight text %}
-{% raw %}
+```
+
 [will@cheetah playbooks (db_config)]$ ansible-playbook -i ../../inventory/hosts  --limit prod-web-server-1a dbconfig.yml -vv
 
 PLAY [web] ******************************************************************** 
@@ -211,8 +190,8 @@ changed: [prod-web-server-1a] => {"changed": true, "dest": "/tmp/config.properti
 
 PLAY RECAP ******************************************************************** 
 prod-web-server-1a         : ok=4    changed=1    unreachable=0    failed=0 
-{% endraw %}
-{% endhighlight %}
+
+```
 
 ## Ansible Vault
 Ansible vault allows you to encrypt your secrets with a password. These 
@@ -231,8 +210,8 @@ wish to follow along.
 
 Finally we can check this with a playbook that uses dbsupersecrets.yml and 
 run `ansible-playbook` with `--ask-vault-pass`
-{% highlight text %}
-{% raw %}
+```
+
 [will@cheetah playbooks (db_config)]$ ansible-playbook -i ../../inventory/hosts  --limit prod-web-server-1a dbvault.yml -vv --ask-vault-pass
 Vault password: 
 
@@ -250,8 +229,8 @@ changed: [prod-web-server-1a] => {"changed": true, "dest": "/tmp/config.properti
 
 PLAY RECAP ******************************************************************** 
 prod-web-server-1a         : ok=3    changed=2    unreachable=0    failed=0  
-{% endraw %}
-{% endhighlight %}
+
+```
 And voilà, config properties files with the much more secure 
 password of 'Ch4ng3M3!'.
 
@@ -267,13 +246,13 @@ and have cleartext versions for dev and UAT, and the same templates and playbook
 pass --ask-vault-pass when running against production)
 
 I've updated the github repo to reflect this, but the main change is to the location of the credentials files and the playbook:
-{% highlight text %}
-{% raw %}
+```
+
 - hosts: web
   connection: local
   vars_files:
   - '../../secrets/{{env}}/dbsupersecrets.yml'
 
   ...
-{% endraw %}
-{% endhighlight %}
+
+```

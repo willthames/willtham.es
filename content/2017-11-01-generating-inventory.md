@@ -62,7 +62,7 @@ enable_plugins = generator,host_list,script,yaml,ini
 The above inventory can be expressed with the inventory plugin using:
 
 ```
-{% raw %}
+
 # inventory.config file in YAML format
 plugin: generator
 strict: False
@@ -91,7 +91,7 @@ layers:
     application:
         - web
         - api
-{% endraw %}
+
 ```
 
 ![launch-web-test-runner](/images/launch-web-test-runner.png)

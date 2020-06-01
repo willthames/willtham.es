@@ -37,14 +37,14 @@ or, in picture form:
 
 ![test-runner](/images/test-runner.png)
 
-{% raw %}
+
 That way, when we use `hosts: test-runner` we can pick up all the
 inventory associated with the `test` group - the CIDR prefix of networks,
 the tag to use for `Environment`, DNS zones, and many many other things
 (in reality a lot of our variables come from the `all` group but with
 the `env` property used in populating variables - so our VPC name
 is `{{ env }}-{{ cidr_prefix }}`.
-{% endraw %}
+
 
 To avoid needing to add `connection: local` to plays using runners,
 create a `runner` group vars file (e.g. `inventory/group_vars/runners`)
@@ -54,13 +54,13 @@ With applications, and the right inventory structure, we can do things
 like create all the loadbalancers with:
 
 ```
-{% raw %}
+
 - hosts: application:&{{ env }}:&runner
   connection: local
 
   roles:
   - loadbalancer
-{% endraw %}
+
 ```
 
 Each `application` group contains a (possibly empty) list of loadbalancers,

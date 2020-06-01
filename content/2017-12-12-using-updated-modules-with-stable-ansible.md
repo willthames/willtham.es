@@ -2,12 +2,12 @@
 title = "Using updated modules, libraries and plugins with stable Ansible"
 date = 2017-12-12T10:00:00Z
 +++
-<div class="alert alert-info"><span class="glyphicon glyphicon-info-sign"></span>
+<div class="alert alert-info"><i class="fas fa-info-circle"></i>
 This page was updated 2020-05-16 to incorporate how to use collections to the
 same effect
 </div>
 
-<div class="alert alert-info"><span class="glyphicon glyphicon-info-sign"></span>
+<div class="alert alert-info"><i class="fas fa-info-circle"></i>
 This page was updated on 2019-04-07 to improve `module_utils` information and
 add plugin information</div>
 
@@ -22,7 +22,7 @@ stable Ansible core release:
 * Some improvements only exist in PR form. Some improvements only exist
   in branches made by combining multiple PRs.<sup>&dagger;</sup> Some improvements are very
   handy but so experimental they're not even ready for a PR!<sup>&dagger;</sup>
-
+<!-- more -->
 When that happens, thankfully you don't have to run off your own megamerge
 branch of ansible<sup>&dagger;</sup>. 
 

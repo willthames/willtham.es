@@ -1,3 +1,19 @@
 .l-footer {
   padding: 24px 0;
+
+  .flex-grid {
+    display: flex;
+
+    ul {
+      flex: 1;
+      text-align: center;
+
+      li {
+        list-style: none;
+      }
+    }
+  }
+  img {
+    vertical-align: middle;
+  }
 }

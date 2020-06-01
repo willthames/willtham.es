@@ -91,8 +91,8 @@ handler files (`handlers/main.yml` etc) and playbooks.
 On running this against a tasks file with bare words, you get:
 
 ```
-{% raw %}WARN: Future standard "bare words are deprecated for with_items" not met:
-tasks/main.yml:9: [ANSIBLE0015] Found a bare variable 'mysql_pkgs' used in a 'with_items' loop. You should use the full variable syntax ('{{mysql_pkgs}}'){% endraw %}
+WARN: Future standard "bare words are deprecated for with_items" not met:
+tasks/main.yml:9: [ANSIBLE0015] Found a bare variable 'mysql_pkgs' used in a 'with_items' loop. You should use the full variable syntax ('{{mysql_pkgs}}')
 ```
 
 The check can be an `ansible-lint` rule using the `lintcheck` function, but

@@ -35,18 +35,18 @@ the full resource name in deployments or similar resources.
 In inventory we might have something like:
 
 ```
-{% raw %}
+
 kube_resource_configmaps:
   env: "{{ lookup('template', kube_resource_template_dir + 'env-configmap.yml') | from_yaml }}"
 kube_resource_secrets:
   env: "{{ lookup('template', kube_resource_template_dir + 'env-secrets.yml') | from_yaml }}"
-{% endraw %}
+
 ```
 
 which then gets referenced in the deployment with:
 
 ```
-{% raw %}
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -61,7 +61,7 @@ spec:
                 name: {{ kube_resource_configmaps.env | k8s_config_resource_name }}
             - secretRef:
                 name: {{ kube_resource_secrets.env | k8s_config_resource_name }}
-{% endraw %}
+
 ```
 
 Its best to create
