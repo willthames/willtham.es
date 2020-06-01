@@ -1,5 +1,6 @@
 +++
 title = "So You Want To Test AWS Modules For Ansible"
+date = 2017-07-17T20:00:00Z
 +++
 
 <div class="alert alert-info"><i class="fas fa-info-circle"></i>

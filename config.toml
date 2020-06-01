@@ -2,7 +2,6 @@
 baseUrl = "https://willtham.es"
 
 title = "Will Thames' tech blog"
-theme = "anubis"
 
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = true

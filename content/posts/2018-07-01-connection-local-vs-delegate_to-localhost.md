@@ -1,5 +1,6 @@
 +++
 title = "connection: local vs delegate_to: localhost"
+date = 2018-07-01T20:00:00Z
 +++
 Performing tasks locally is a common operation when working with an API of some
 kind&mdash;typical use cases are cloud services, network devices, cluster
