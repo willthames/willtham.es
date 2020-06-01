@@ -1,10 +1,12 @@
 # The URL the site will be built for
-base_url = "https://willtham.es"
+baseUrl = "https://willtham.es"
 
 title = "Will Thames' tech blog"
+theme = "anubis"
 
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = true
+paginate = 100
 
 # Whether to do syntax highlighting
 # Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
@@ -13,9 +15,15 @@ highlight_code = true
 # Whether to build a search index to be used later on by a JavaScript library
 build_search_index = false
 
+uglyurls = true
+
+
+[permalinks]
+posts = "/:year/:month/:day/:title/"
+
 # You can put any kind of data in there and it
 # will be accessible in all templates
-[extra]
+[params]
 subtitle = "Lessons from working and playing with things like Kubernetes, AWS, Ansible, and others"
 analytics = "UA-34904722-3"
 katex_enable = true
@@ -23,3 +31,4 @@ instantpage_enable = true
 github_username = "willthames"
 twitter_username = "willthames"
 email = "will@thames.id.au"
+dateFormat = "2006-01-02"
