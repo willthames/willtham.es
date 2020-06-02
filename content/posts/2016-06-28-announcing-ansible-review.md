@@ -27,7 +27,7 @@ There are a number of key differences between `ansible-lint` and
 `ansible-review` can take the result of a `git diff` and only highlight errors on
 the changed sections.
 
-```
+```sh
 git diff -U0 | ansible-review
 ```
 
@@ -77,7 +77,7 @@ optionally a version.
 
 Here's an example of a standard that uses an `ansible-lint` check:
 
-```
+```python
 with_items_bare_words = Standard(dict(
     name="bare words are deprecated for with_items",
     check=lintcheck('ANSIBLE0015'),
@@ -90,7 +90,7 @@ handler files (`handlers/main.yml` etc) and playbooks.
 
 On running this against a tasks file with bare words, you get:
 
-```
+```sh
 WARN: Future standard "bare words are deprecated for with_items" not met:
 tasks/main.yml:9: [ANSIBLE0015] Found a bare variable 'mysql_pkgs' used in a 'with_items' loop. You should use the full variable syntax ('{{mysql_pkgs}}')
 ```
@@ -101,7 +101,7 @@ all instances, variables for a host should come from group membership unless
 absolutely unique to the host - SSL key/cert, kerberos keytab etc). So I have
 a check for that:
 
-```
+```python
 def host_vars_exist(candidate, settings):
     errors = [Error(None, "Host vars are generally not required")]
     return Result(candidate.path, errors)
@@ -116,7 +116,7 @@ considered as errors.
 
 The standard that uses that check is then
 
-```
+```python
 host_vars_should_not_be_present = Standard(dict(
     name="Host vars should not be present",
     check=host_vars_exist,
@@ -126,7 +126,7 @@ host_vars_should_not_be_present = Standard(dict(
 
 Running this gives:
 
-```
+```sh
 WARN: Future standard "Host vars should not be present" not met:
 inventory/host_vars/host.example.com.yml:Host vars are generally not required
 ```

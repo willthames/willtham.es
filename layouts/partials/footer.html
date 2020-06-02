@@ -1,0 +1,48 @@
+<footer class="l-footer">
+  <div class="flex-grid">
+    <ul class="contact-list">
+      <li><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a></li>
+    </ul>
+
+    <ul class="social-media-list">
+      {{ if $.Site.Params.github_username }}
+      <li>
+        <a href="https://github.com/{{ $.Site.Params.github_username }}">
+          <i class="fab fa-github"></i>
+          <span class="username">{{ $.Site.Params.github_username }}</span>
+        </a>
+      </li>
+      {{ end }}
+    </ul>
+    <ul class="social-media-list">
+      {{ if .Site.Params.twitter_username }}
+      <li>
+        <a href="https://twitter.com/{{ $.Site.Params.twitter_username }}">
+          <i class="fab fa-twitter"></i>
+          <span class="username">{{ $.Site.Params.twitter_username }}</span>
+        </a>
+      </li>
+      {{ end }}
+    </ul>
+  </div>
+
+  <p class="p-copyright">
+    <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/au/"><img alt="Creative Commons Licence"
+      style="border-width:0" src="https://i.creativecommons.org/l/by-sa/3.0/au/88x31.png" /></a>
+    This work is licensed under a
+    <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/au/">Creative Commons Attribution-ShareAlike 3.0 Australia License</a>
+  </p>
+
+</footer>
+
+{{ if $.Site.GoogleAnalytics }}
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ $.Site.GoogleAnalytics }}"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', '{{ .Site.GoogleAnalytics }}');
+</script>
+{{ end }}

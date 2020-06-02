@@ -3,9 +3,10 @@ title = "So You Want To Test AWS Modules For Ansible"
 date = 2017-07-17T20:00:00Z
 +++
 
-<div class="alert alert-info"><i class="fas fa-info-circle"></i>
+{{<alert class="info">}}
 This page was updated on 2018-02-28 to better document IAM policy changes,
 the aliases file, YAML anchors for testing credentials</div>
+{{</alert>}}
 
 You're a (prospective) contributor to Ansible, and you have some
 great improvements to make to an existing module or a brand new
@@ -22,7 +23,7 @@ a shiny new Fedora 26 vagrant VM.
 
 ## Setting up Ansible for development
 
-```
+```sh
 vagrant init fedora/26-cloud-base
 vagrant up
 vagrant ssh
@@ -31,13 +32,13 @@ vagrant ssh
 The easiest way to ensure we have all the dependencies for Ansible
 installed is then to use `dnf` to install ansible.
 
-```
+```sh
 sudo dnf install ansible
 ```
 
 Next, clone the your fork of the source code for ansible:
 
-```
+```sh
 ssh-keygen
 eval `ssh-agent -s`
 ssh-add
@@ -54,7 +55,7 @@ it's worth generating a github specific ssh key (using e.g.
 `ssh-keygen -f ~/.ssh/github`) and setting up
 your .ssh/config appropriately:
 
-```
+```ini
 Host github.com
   IdentityFile ~/.ssh/github
 ```
@@ -63,7 +64,7 @@ At this point, `ansible --version` should give the released version of
 Ansible (at the time of writing, this was 2.3.1.0). To use the development
 version (not recommended for production use), do:
 
-```
+```sh
 source hacking/env-setup
 ```
 
@@ -76,7 +77,7 @@ Add docker and set it up so that you don't have to be root to run it. There
 are some security implications with this&mdash;being in the docker group is
 [effectively equivalent to root access](https://docs.docker.com/engine/security/security/#docker-daemon-attack-surface).
 
-```
+```sh
 sudo dnf install docker
 sudo groupadd docker
 sudo gpasswd -a $USER docker
@@ -92,7 +93,7 @@ if you prefer&mdash;it depends if you'd need to test with different versions
 of boto3 etc). The boto library is currently still required for quite a
 few modules, as well as the common code used to connect to AWS.
 
-```
+```sh
 pip install --user botocore boto3 boto awscli
 ```
 
@@ -108,7 +109,7 @@ the AdministratorAccess managed policy (or similar) attached
 Ensure a [profile for this IAM user](http://boto3.readthedocs.io/en/latest/guide/configuration.html)
 exists in ~/.aws/credentials and then run:
 
-```
+```sh
 export ADMIN_PROFILE=$your_profile_name
 ansible-playbook hacking/aws_config/setup-iam.yml -e iam_group=ansible_test -e profile=$ADMIN_PROFILE -e region=us-east-2 -vv
 ```
@@ -123,7 +124,7 @@ the newly created group (`ansible_test` if you used that with `iam_group` in
 While you're there, create an API credential for the test user.
 This can all be automated:
 
-```
+```sh
 aws iam create-user --user-name ansible_test --profile $ADMIN_PROFILE
 aws iam add-user-to-group --user-name ansible_test --group_name ansible_test --profile $ADMIN_PROFILE
 aws iam create-access-key --user-name ansible_test --profile $ADMIN_PROFILE
@@ -135,32 +136,28 @@ rather than one very long `ansible` adhoc command line or a larger ansible playb
 
 Using the information from the new credential, you can do:
 
-```
+```sh
 cp test/integration/cloud-config-aws.yml.template test/integration/cloud-config-aws.yml
 ```
 
 and then update that file to include this new secret key and access key.
 It's also worth adding the following for `region` if you're not using us-east-1
 
-```
-
+```yaml
 aws_region: us-east-2
 ec2_region: "{{ aws_region }}"
-
 ```
 
 Note: The credentials in ~/.aws/credentials and cloud-config-aws.yml should be
 completely different. A good way to test this is:
 
-```
+```sh
 aws sts get-caller-identity --profile=$ADMIN_PROFILE
 ```
 
-```
-
+```sh
 ansible -m shell -a 'AWS_SECRET_ACCESS_KEY={{ aws_secret_key }} AWS_ACCESS_KEY_ID={{ aws_access_key }} aws sts get-caller-identity' \
   -e @test/integration/cloud-config-aws.yml localhost
-
 ```
 
 The first of these should return your administrator user. The second of these
@@ -169,7 +166,7 @@ steps (and let me know if I can improve the documentation!).
 
 ## Ensuring your user has the correct IAM policies
 
-```
+```sh
 ansible-playbook hacking/aws_config/setup-iam.yml -e region=us-east-2 \
   -e profile=$ADMIN_PROFILE -e iam_group=ansible_test -vv
 ```
@@ -187,7 +184,7 @@ policies needed by the CI account.
 
 Check that you can run the integration tests
 
-```
+```sh
 ansible-test integration --docker -v ec2_group
 ```
 
@@ -202,13 +199,14 @@ For your module, you will need:
 * `test/integration/module_name/aliases`
 * `test/integration/module_name/tasks/main.yml`
 
-<div class="alert alert-info"><i class="fas fa-info-circle"></i>
+{{<alert class="info">}}
 Previously, I said here that `meta/main.yml` was required, but it isn't&mdash;most of
 the AWS module test suites don't need to specify any dependencies at all.</div>
+{{</alert>}}
 
 ### aliases
 
-```
+```ini
 cloud/aws
 posix/ci/cloud/groupX/aws
 ```
@@ -236,8 +234,7 @@ should always ignore errors.
 Before running any tasks, set up the account credentials in a reusable YAML
 anchor for use in each AWS task.
 
-```
-
+```yaml
 - block:
   - name: set up AWS credentials
     set_fact:
@@ -271,7 +268,6 @@ anchor for use in each AWS task.
       name: "{{ resource_prefix }}-more-name"
       ...
     ignore_errors: yes
-
 ```
 
 
@@ -292,7 +288,7 @@ your module isn't doing what you expect.
 
 At this point, it's likely easiest to create a quick test playbook
 
-```
+```yaml
 - hosts: localhost
   vars_files:
   - test/integration/cloud-config-aws.yml
@@ -320,7 +316,7 @@ So my steps are:
 Detach the policies from your test IAM group&mdash;this will leave the test group and user in
 place but with zero privileges.
 
-```
+```sh
 export GROUP=$your_iam_group
 for policy_arn in `aws iam list-attached-group-policies --group-name $GROUP --profile $ADMIN_PROFILE --query 'AttachedPolicies[].PolicyArn' --output text`
 do aws iam detach-group-policy --group-name $GROUP --policy-arn $policy_arn --profile $ADMIN_PROFILE
@@ -329,7 +325,7 @@ done
 
 Shut down docker and vagrant
 
-```
+```sh
 sudo systemctl stop docker
 exit
 vagrant halt

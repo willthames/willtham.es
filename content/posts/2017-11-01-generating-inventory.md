@@ -11,7 +11,7 @@ likely as many groups.
 
 For example, we use a structure that looks like:
 
-```
+```ini
 [environment:children]
 application-environment
 
@@ -51,7 +51,7 @@ The generator plugin is then installed by putting it into our ansible
 playbooks repo under plugins/inventory/generator.py, and updating ansible.cfg to
 include
 
-```
+```ini
 [defaults]
 inventory_plugins = plugins/inventory
 
@@ -61,8 +61,7 @@ enable_plugins = generator,host_list,script,yaml,ini
 
 The above inventory can be expressed with the inventory plugin using:
 
-```
-
+```yaml
 # inventory.config file in YAML format
 plugin: generator
 strict: False
@@ -106,7 +105,7 @@ rather than adding the appropriate groups and hosts in 10 different places.
 ansible-inventory-grapher copes fine with the results (I put the effort in to
 finally fixing it so that I could validate the result)
 
-```
+```sh
 ansible-inventory-grapher -i inventory/generator.config all -a 'rankdir=LR;' -q | dot -Tpng | display png:-
 ```
 

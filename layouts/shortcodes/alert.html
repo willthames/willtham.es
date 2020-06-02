@@ -1,0 +1,5 @@
+{{ $icon := dict "info" "info-circle" "warning" "exclamation-triangle" }}
+{{ $class := .Get "class" }}
+<div class="alert alert-{{ $class }}"><i class="fas fa-{{ index $icon $class }}"></i>
+  {{ .Inner }}
+</div>

@@ -16,7 +16,7 @@ For simplicity's sake, we'll assume we're trying to write a file called
 config.properties that has database configuration in the form of a simple
 jdbc type URL - e.g.
 
-```
+```ini
 customerdb=jdbc:postgresql://db1.prod.example.com:3306/customers?user=webapp&password=changeme
 storedb=jdbc:postgresql://db2.prod.example.com:3306/store?user=webapp&password=changeme2
 ```
@@ -38,20 +38,20 @@ inventory files, with the exception of DB passwords which will be stored
 in separate variable files (in a separate repo, or even using ansible vault)
 
 <div class="clearfix">
-<img src="{{ get_url(path="images/webapp.png") }}" class="img-thumbnail">
+<img src="images/webapp.png" class="img-thumbnail">
 </div>
 
 There are a number of ways to achieve this in Ansible.
 <h2>Flat configuration strings</h2>
 <h3>inventory/group_vars/all.yml</h3>
 
-```
+```yaml
 customerdb_dbname: customers
 storedb_dbname: store
 ```
 
 <h3>inventory/group_vars/production.yml</h3>
-```
+```yaml
 customerdb_host=db1.prod.example.com
 customerdb_port=3306
 storedb_host=db2.prod.example.com
@@ -59,13 +59,13 @@ storedb_port=3306
 ```
 
 <h3>inventory/group_vars/web.yml</h3>
-```
+```yaml
 customerdb_user=webapp
 storedb_user=webapp
 ```
 
 <h3>web/templates/config.properties.tmpl.v1</h3>
-```
+```yaml
 customerdb=jdbc:postgresql://{{customerdb_host}}:{{customerdb_port}}/{{customerdb_dbname}}?user={{customerdb_user}}&password={{customerdb_password}}
 storedb=jdbc:postgresql://{{storedb_host}}:{{customerdb_port}}/{{storedb_dbname}}?user={{storedb_user}}&password={{storedb_password}}
 ```
@@ -77,11 +77,12 @@ we can have a customerdb object that has a dbname property. And the
 storedb will have similar properties.
 
 
-<div class="alert alert-info"><i class="fas fa-info-circle"></i> Set <a href="http://docs.ansible.com/intro_configuration.html#hash-behaviour">hash_behaviour</a> to merge for this to work
-</div>
+{{<alert class="info">}}
+Set <a href="http://docs.ansible.com/intro_configuration.html#hash-behaviour">hash_behaviour</a> to merge for this to work
+{{</alert}
 
 ### inventory/group_vars/all.yml
-```
+```yaml
 databases:
   customerdb:
     dbname: customers
@@ -90,7 +91,7 @@ databases:
 ```
 
 ### inventory/group_vars/production.yml
-```
+```yaml
 databases:
   customerdb:
     host: db1.prod.example.com
@@ -101,7 +102,7 @@ databases:
 ```
 
 ### inventory/group_vars/web.yml
-```
+```yaml
 databases:
   customerdb:
     user: webapp
@@ -115,7 +116,7 @@ The modelling of the credentials (see below under Secrets) allows us to
 map per-database usernames and passwords. 
 
 ### web/templates/config.properties.tmpl.v2
-```
+```yaml
 {% for dbkey, db in databases.iteritems() %}
 {{ dbkey }}=jdbc:postgresql://{{db.host}}:{{db.port}}/{{db.dbname}}?user={{db.user}}&password={{db.credentials[db.user]}}
 {% endfor %}
@@ -133,7 +134,7 @@ illustration, but it to keep sensitive information out of the playbooks
 repository it would perhaps be in a separate, more locked-down repo.
 
 ### ../../secrets/dbsecrets.yml
-```
+```yaml
 # v1
 customerdb_password: changeme
 storedb_password: changeme2
@@ -149,7 +150,7 @@ databases:
 ```
 
 ### web/playbooks/dbconfig.yml
-```
+```yaml
 - hosts: web
   connection: local
   vars_files:
@@ -167,7 +168,7 @@ Running this then generates two almost identical configuration files
 (the order of the two DB configurations is not guaranteed - which 
 shouldn't matter in general).
 
-```
+```yaml
 
 [will@cheetah playbooks (db_config)]$ ansible-playbook -i ../../inventory/hosts  --limit prod-web-server-1a dbconfig.yml -vv
 
@@ -210,7 +211,7 @@ wish to follow along.
 
 Finally we can check this with a playbook that uses dbsupersecrets.yml and 
 run `ansible-playbook` with `--ask-vault-pass`
-```
+```yaml
 
 [will@cheetah playbooks (db_config)]$ ansible-playbook -i ../../inventory/hosts  --limit prod-web-server-1a dbvault.yml -vv --ask-vault-pass
 Vault password: 
@@ -246,7 +247,7 @@ and have cleartext versions for dev and UAT, and the same templates and playbook
 pass --ask-vault-pass when running against production)
 
 I've updated the github repo to reflect this, but the main change is to the location of the credentials files and the playbook:
-```
+```yaml
 
 - hosts: web
   connection: local

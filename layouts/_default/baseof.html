@@ -3,17 +3,29 @@
   <head>
     <meta charset="utf-8">
     <title>{{ block "title" . }}
-      <!-- Blocks may include default content. -->
       {{ .Site.Title }}
     {{ end }}</title>
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/syntax.css" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link href="/fontawesome/css/fontawesome.css" rel="stylesheet">
+    <link href="/fontawesome/css/brands.css" rel="stylesheet">
+    <link href="/fontawesome/css/solid.css" rel="stylesheet">
+
   </head>
   <body>
+    <div class="container">
+    {{ block "header" . }}
+    {{ partial "header.html" . }}
+    {{ end }}
     <!-- Code that all your templates share, like a header -->
     {{ block "main" . }}
       <!-- The part of the page that begins to differ between templates -->
     {{ end }}
     {{ block "footer" . }}
-    <!-- More shared code, perhaps a footer but that can be overridden if need be in  -->
+    {{ partial "footer.html" . }}
     {{ end }}
+    </div>
   </body>
 </html>

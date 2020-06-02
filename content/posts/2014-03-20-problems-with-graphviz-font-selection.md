@@ -15,7 +15,7 @@ a [dot source file](https://github.com/willthames/willthames.github.io/blob/mast
 Font selection in dot labels can be done a number of ways, but the resolution of the fonts (i.e. 
 what system fonts to use to render the fonts requested in the dotfile) is where things go wrong. 
 Here's an example dot file:
-```
+```dot
 digraph dummy { 
   a -> b -> c -> d -> e -> f -> g -> h -> i;
   a [fontname="Times New Roman, Bold"]
@@ -32,7 +32,7 @@ digraph dummy {
 
 And the results of the dot conversion (on a Fedora 20 machine with fairly standard fonts - it didn't
 go better on a different Fedora 20 machine with the MS core fonts installed):
-```
+```yaml
 fontname: "Times New Roman, Bold" resolved to: (PangoCairoFcFont) "Liberation Serif, Bold" /usr/share/fonts/liberation/LiberationSerif-Bold.ttf
 fontname: "Times New Roman Bold" resolved to: (PangoCairoFcFont) "DejaVu Sans, Bold" /usr/share/fonts/dejavu/DejaVuSans-Bold.ttf
 fontname: "Times, Bold" resolved to: (PangoCairoFcFont) "Nimbus Roman No9 L, Medium" /usr/share/fonts/default/Type1/n021004l.pfb

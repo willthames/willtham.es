@@ -6,7 +6,7 @@ date = 2013-08-24T19:00:00Z
 
 To view the slides locally, you can use:
 
-```
+```sh
 git clone https://github.com/willthames/devops-bris-ansible.git
 git checkout gh-pages
 python -m SimpleHTTPServer

@@ -2,14 +2,15 @@
 title = "Using updated modules, libraries and plugins with stable Ansible"
 date = 2017-12-12T10:00:00Z
 +++
-<div class="alert alert-info"><i class="fas fa-info-circle"></i>
+{{<alert class="info">}}
 This page was updated 2020-05-16 to incorporate how to use collections to the
 same effect
-</div>
+{{</alert>}}
 
-<div class="alert alert-info"><i class="fas fa-info-circle"></i>
+{{<alert>}}
 This page was updated on 2019-04-07 to improve `module_utils` information and
-add plugin information</div>
+add plugin information
+{{</alert>}}
 
 There are many reasons to want to use newer modules than a chosen
 stable Ansible core release:
@@ -22,14 +23,14 @@ stable Ansible core release:
 * Some improvements only exist in PR form. Some improvements only exist
   in branches made by combining multiple PRs.<sup>&dagger;</sup> Some improvements are very
   handy but so experimental they're not even ready for a PR!<sup>&dagger;</sup>
-<!-- more -->
+
 When that happens, thankfully you don't have to run off your own megamerge
 branch of ansible<sup>&dagger;</sup>. 
 
 Which ever of the two approaches below you take, I recommend keeping
 a README.md file in the library directory. For modules, it looks a bit like:
 
-```
+```txt
 |Module                     | PR                                            | Notes           |
 |+++++++++++++++++++++++++++|+++++++++++++++++++++++++++++++++++++++++++++--|+++++++++++++++--|
 |cloudfront_distribution.py | https://github.com/ansible/ansible/pull/31284 | Unmerged        |
@@ -54,7 +55,7 @@ below your playbooks (other locations are available through configuring
 [`collections_paths`](https://docs.ansible.com/ansible/latest/reference_appendices/config.html#collections-paths) -
 take note of both the plurals, I wasted hours investigating why `ANSIBLE_COLLECTION_PATHS` wasn't working).
 
-```
+```sh
 mkdir collections
 git clone git@github.com:ansible-collections/community.kubernetes collections/community.kubernetes
 ```
@@ -85,7 +86,7 @@ directory should reflect that of ansible. For example, if you need updates to th
 need to copy one or both of `k8s/common.py` and `k8s/raw.py` from `lib/ansible/module_utils` to your
 `module_utils/k8s` directory. You will also need an empty `__init__.py` at the bottom level directory.
 
-```
+```sh
 module_utils/
 └── k8s
     ├── __init__.py

@@ -9,7 +9,7 @@ local`, `delegate_to: localhost` and `local_action`. The last is rarely seen the
 days and can be deemed equivalent to `delegate_to: localhost` in terms of
 advantages and disadvantages, but with the additional disadvantage of being
 a very unusual style, adding a readability penalty.
-<!-- more -->
+
 In a previous post I talked about the
 [runner pattern](/2017/10/31/making-the-most-of-inventory.html)
 which allows better use of inventory for different scenarios even when the
@@ -33,7 +33,7 @@ wrong place.
 To demonstrate this, I wrote a [`boto3_facts` module](https://github.com/ansible/ansible/pull/42083),
 which shows python location and version as well as boto3 and botocore versions.
 
-```
+```yaml
 - hosts: localhost
   gather_facts: no
 
@@ -66,7 +66,7 @@ which shows python location and version as well as boto3 and botocore versions.
     boto3_facts:
 ```
 
-```
+```sh
 $ ansible-playbook boto3_facts.yml -v -i fakehost,
 Using /Users/will/tmp/ansible/boto3_facts/ansible.cfg as config file
 
@@ -128,7 +128,7 @@ In conclusion, I much prefer `connection: local` for the runner pattern now that
 `ansible_python_interpreter` can be set dynamically.
 
 
-```
+```yaml
 - hosts: fakehost
   connection: local
   vars:
@@ -141,7 +141,7 @@ In conclusion, I much prefer `connection: local` for the runner pattern now that
 ```
 
 
-```
+```sh
 PLAY [fakehost] ******************************************************************************************************************
 
 TASK [runner host using local connection and ansible_python_interpreter set] *****************************************************

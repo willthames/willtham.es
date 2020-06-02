@@ -20,7 +20,7 @@ in the roles specification files (rolesfile) associated with a playbook.
 I've created two example git repositories - to follow along, perform the
 following somewhere:
 
-```
+```sh
 git clone https://github.com/willthames/playbook-versioning-example.git
 git clone https://github.com/willthames/role-versioning-example.git
 ```
@@ -30,7 +30,7 @@ git clone https://github.com/willthames/role-versioning-example.git
 In the first iteration, we want to get the role ready to deploy to
 production. The directory structure for the playbook looks like this:
 
-```
+```sh
 .
 ├── inventory
 │   ├── example
@@ -45,13 +45,13 @@ production. The directory structure for the playbook looks like this:
 We don't need to specify a version until we think it's ready for
 production, and so the rolesfile is just:
 
-```
+```ini
 git+https://github.com/willthames/role-versioning-example.git
 ```
 
 To install the role alongside the playbook, we can use the following:
 
-```
+```sh
 ansible-galaxy install -r stage/rolesfile -p stage/roles
 ```
 
@@ -60,7 +60,7 @@ which uses `stage/rolesfile` to specify the roles to install under
 
 We can now run the playbook:
 
-```
+```sh
 $ ansible-playbook stage/stage-playbook.yml
 
 PLAY [stage] ******************************************************************
@@ -80,7 +80,7 @@ localhost                  : ok=2    changed=0    unreachable=0    failed=0
 This is ready to promote. So we'll tag the role, update the stage rolesfile
 to reference the version, retest and then create the playbook for production
 
-```
+```sh
 $ cd path/to/role
 $ git tag v1.0
 $ git push origin v1.0
@@ -93,7 +93,7 @@ $ ansible-playbook stage/stage-playbook.yml
 We can then create the playbook and rolesfile for prod and we're
 ready to deploy to prod:
 
-```
+```sh
 $ ansible-galaxy install --force -r prod/rolesfile -p prod/roles
 $ ansible-playbook prod/prod-playbook.yml
 ```
@@ -128,7 +128,7 @@ At this point, we can edit the stage rolesfile to point to HEAD again
 (i.e. remove the version component), update the role and test out
 version 1.1
 
-```
+```sh
 $ ansible-playbook stage/stage-playbook.yml
 
 PLAY [stage] ******************************************************************
@@ -152,7 +152,7 @@ Until we're ready to release to production, we have deployments to stage
 using the new version (1.1) and production still good for any emergency
 redeploys of 1.0.
 
-```
+```sh
 $ ansible-playbook prod/prod-playbook.yml
 
 PLAY [prod] *******************************************************************

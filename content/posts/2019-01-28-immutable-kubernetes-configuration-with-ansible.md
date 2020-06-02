@@ -34,7 +34,7 @@ the full resource name in deployments or similar resources.
 
 In inventory we might have something like:
 
-```
+```yaml
 
 kube_resource_configmaps:
   env: "{{ lookup('template', kube_resource_template_dir + 'env-configmap.yml') | from_yaml }}"
@@ -45,7 +45,7 @@ kube_resource_secrets:
 
 which then gets referenced in the deployment with:
 
-```
+```yaml
 
 apiVersion: apps/v1
 kind: Deployment

@@ -31,7 +31,7 @@ other ssh options.
 
 Using an AWS server in US East (about 250ms ping time from Brisbane),
 we see a speed up of a simple ssh command of nearly 10x
-```
+```sh
 [will@cheetah ansible-tests (master)]$ time ssh -o ControlMaster=auto -o ControlPersist=60s -o ControlPath=/tmp/ansible-ssh-%h-%p-%r ec2-54-152-69-19.compute-1.amazonaws.com echo hello
 hello
 
@@ -56,7 +56,7 @@ quite slow switched on, so I need to improve that!
 
 To enable pipelining, add:
 
-```
+```ini
 [ssh_connection]
 pipelining = True
 ```

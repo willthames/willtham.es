@@ -11,14 +11,14 @@ hosts in inventory, startup times are typically of the order of a few seconds.
 
 So we did some straceing.
 
-```
+```sh
 strace -r -o /tmp/strace.out ansible -m debug -a 'msg=hello' testhost
 ```
 
 was enough to gather some information. Comparing my colleague's results with
 my own, I found a lot of 100ms calls to `read`:
 
-```
+```strace
 0.132407 read(7, "/usr/lib/python2.7/site-packages"..., 4096) = 284
 ```
 
@@ -29,7 +29,7 @@ then I spotted the truncation (the `...`). So we repeated the strace with
 
 And then we found the actual problem:
 
-```
+```strace
 read(7, "/usr/lib/python2.7/site-packages/keyring/backends/Gnome.py:6:
 PyGIWarning: GnomeKeyring was imported without specifying a version first. Use
 gi.require_version('GnomeKeyring', '1.0') before import to ensure that the right

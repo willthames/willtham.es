@@ -43,7 +43,7 @@ spec file can use the same role declarations in the dependencies
 section - so if the `tomcat` role relied on an `java` role you 
 might have the following in `meta/main.yml`
 
-```
+```yaml
 ...
 dependencies:
 - role: git+http://git.internal/galaxy/role-java.git,v1.0,java
@@ -53,7 +53,7 @@ Once the role is ready, you can then publish the role to whatever
 repository suits your needs. Once tested, you can tag the role,
 e.g.
 
-```
+```sh
 git tag v1.0
 git push origin v1.0
 ```
@@ -61,11 +61,11 @@ git push origin v1.0
 ## Using roles in playbooks
 
 To specify what roles you would like to use in your playbook, you can
-specify a roles file and then use 
+specify a roles file and then use
 `ansible-galaxy install -r rolesfile -p roles` to install it under the
 `roles` directory. A roles file might look like:
 
-```
+```ini
 git+http://git.internal/galaxy/tomcat.git,v1.0
 hg+http://hg.example.com/roles/awkward-name,,nice-name
 ```

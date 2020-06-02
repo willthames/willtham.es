@@ -17,7 +17,7 @@ within them (load balancers, database servies) or specific applications.
 
 For environments, we might have a hierarchy that looks a little like:
 
-```
+```ini
 [non_prod_account:children]
 dev
 test
@@ -53,14 +53,12 @@ and add `ansible_connection: local`.
 With applications, and the right inventory structure, we can do things
 like create all the loadbalancers with:
 
-```
-
+```yaml
 - hosts: application:&{{ env }}:&runner
   connection: local
 
   roles:
   - loadbalancer
-
 ```
 
 Each `application` group contains a (possibly empty) list of loadbalancers,

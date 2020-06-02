@@ -24,7 +24,7 @@ into Ansible that will warn you at runtime.
 
 With the following playbook:
 
-```
+```yaml
 - hosts: target
   gather_facts: no
 
@@ -35,7 +35,7 @@ With the following playbook:
 
 `ansible-playbook` outputs a warning when `command_warnings` is enabled:
 
-```
+```sh
 $ ansible-playbook playbook.yml
 
 PLAY [target] ******************************************************************
@@ -54,7 +54,7 @@ does not support), it's easy to switch off warnings in a way
 that works with both `ansible` and `ansible-lint` - just add
 `warn: no` to the command arguments
 
-```
+```yaml
 - name: get coreutils version
   command: rpm -q coreutils
   args:
@@ -98,7 +98,7 @@ If a command is read only, set `changed_when` to `False`. If you
 can tell whether a command changed something based on its return
 code or its stdout or stderr, you can use this with `changed_when`:
 
-```
+```yaml
 - name: clear yum cache
   command: yum clear metadata
   register: yum_clear
@@ -111,7 +111,7 @@ If a command creates a file after it is first run, or removes a file
 after it is first run, you can use the `creates` or `removes` argument
 with `command` or `shell`. Then it won't run a second time.
 
-```
+```yaml
 - name: trivially create a file
   shell: echo "hello" > /tmp/hello
   args:
@@ -130,7 +130,7 @@ In these cases, you might need a read-only pre-check command that
 determines whether the system is already in the desired state, and
 then not do the changing task if it is.
 
-```
+```yaml
 - name: check tuned profile
   command: tuned-adm active
   register: tuned_adm

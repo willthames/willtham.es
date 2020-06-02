@@ -32,21 +32,21 @@ groups.
 
 An example inventory graph for the instance we'll build below is
 <div class="clearfix">
-<img src="{{ get_url(path="images/inventory.png") }} class="img-thumbnail">
+<img src="/images/inventory.png" class="img-thumbnail">
 </div>
 
 ## Creating an instance in AWS EC2
 This is relatively straightforward, and the [ec2 module documentation](http://docs.ansible.com/ec2_module.html#examples)
 shows how to do it, but for completeness we'll describe it here. 
 
-<div class="alert alert-info"><i class="fas fa-info-circle"></i>
+{{<alert class="info">}}
 This assumes you have set up your AWS connection ready for use
 with <a href="http://boto.readthedocs.org/en/latest/boto_config_tut.html">boto</a>
 either in the boto configuration file or environment variables.
-</div>
+{{</alert>}}
 
 A minimal playbook looks like:
-```
+```yaml
 - hosts: 127.0.0.1
   connection: local
 
@@ -67,46 +67,47 @@ With this in mind then, and bringing this around to AWS, we'll take the example 
 an organisation that uses a single AWS region, separate VPCs for preproduction and 
 production. 
 
-<div class="alert alert-info"><i class="fas fa-info-circle"></i>
+{{<alert class="info">}}
 Note that while I use dummy image, subnet and security group ids in this documentation,
 I haven't obscured the results of the commands run or the contents within the source
 repository - except for ssh key.
-</div>
+{{</alert>}}
 
-<div class="alert alert-info"><i class="fas fa-info-circle"></i>
+{{<alert class="info">}}
 Also, you'll need to have a copy of YOURKEYNAME.pem - you can use 
 <a href="http://docs.ansible.com/ec2_key_module.html">ec2_key</a> to generate it
 or create it in the EC2 console.
-</div>
+{{</alert>}}
 
 ### inventory/group_vars/all.yml
 all is a special group that all hosts in inventory, other than localhost, belong to. 
 So this is a great place for site defaults. 
-```
+
+```yaml
 region: ap-southeast-2
 image: ami-a1b2c3d4
 sshkey: YOURKEYNAME
 ```
 
 ### inventory/group_vars/production.yml 
-```
+```yaml
 security_group: sg-aaaa1111
 ```
 
 ### inventory/group_vars/production-web.yml
-```
+```yaml
 instance_type: t1.micro
 ```
 (This would be more reasonable instance size in real production but this is an example on the cheap!)
 
 ### inventory/group_vars/production-az-a.yml
-```
+```yaml
 zone: ap-southeast-2a
 subnet: subnet-abcd1234
 ```
 
 ### inventory/hosts
-```
+```yaml
 [production:children]
 production-az-a
 #production-az-b
@@ -137,7 +138,7 @@ I've commented out groups that would lead to other paths along the graph for
 simplicity's sake.
 
 ### create-ec2-instance.yml
-```
+```yaml
 - hosts: all
   connection: local
 
@@ -158,10 +159,10 @@ simplicity's sake.
 ```
 
 And then this gets run with:
-```
+```yaml
 ansible-playbook -i inventory create-ec2-instance.yml --limit prod-web-server-78a -vv
 ```
-```
+```yaml
 PLAY [all] ******************************************************************** 
 
 GATHERING FACTS *************************************************************** 
@@ -178,7 +179,7 @@ prod-web-server-78a        : ok=2    changed=1    unreachable=0    failed=0
 
 ## Managing the resulting instance
 You can simplify your connections to EC2 instances with something like the following in ~/.ssh/config
-```
+```yaml
 Host *.compute.amazonaws.com
 User ec2-user
 IdentityFile ~/.ssh/YOURKEYNAME.pem
@@ -188,11 +189,11 @@ Managing the resulting instance can then be through Ansible's
 [EC2 dynamic inventory](http://docs.ansible.com/intro_dynamic_inventory.html#example-aws-ec2-external-inventory-script)
 For example, using the [ec2_facts](http://docs.ansible.com/ec2_facts_module.html)
 module to get the EC2 facts about an instance can be as simple as using 
-```
+```sh
 EC2_INI_PATH=./ec2.ini ansible-playbook -i ~/src/ansible/plugins/inventory/ec2.py -e instance=prod-web-server-78a ec2-facts.yml
 ```
 with the playbook
-```
+```yaml
 - hosts: tag_Name_{{instance}}
 
   tasks:
@@ -200,7 +201,7 @@ with the playbook
     action: ec2_facts
 ```
 
-```
+```yaml
 PLAY [tag_Name_prod-web-server-78a] ******************************************* 
 
 GATHERING FACTS *************************************************************** 
