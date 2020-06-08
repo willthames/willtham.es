@@ -6,7 +6,7 @@ jobs:
       - image: cibuilds/hugo:latest
     working_directory: ~/hugo
     environment:
-      HUGO_BUILD_DIR: ~/hugo/public
+      HUGO_BUILD_DIR: public
     steps:
       # checkout the repository
       - checkout
@@ -17,15 +17,26 @@ jobs:
       # build with Hugo
       - run: HUGO_ENV=production hugo -v -d $HUGO_BUILD_DIR
 
+      - persist_to_workspace:
+          # Must be an absolute path, or relative path from working_directory. This is a directory on the container which is 
+          # taken to be the root directory of the workspace.
+          root: .
+          # Must be relative path from root
+          paths:
+            - public
+
   deploy:
     docker:
       - image: amazon/aws-cli:latest
     working_directory: ~/hugo
     environment:
-      HUGO_BUILD_DIR: ~/hugo/public
+      HUGO_BUILD_DIR: public
       # `deploy` step: identical to a `run` step, but uses only one container:
       # /docs/2.0/configuration-reference/#deploy
     steps:
+      - attach_workspace:
+          # Must be absolute path or relative path from working_directory
+          at: .
       - deploy:
           name: deploy to AWS
           command: |
