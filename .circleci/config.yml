@@ -19,7 +19,7 @@ jobs:
 
   deploy:
     docker:
-      - image: cibuilds/hugo:latest
+      - image: amazon/aws-cli:latest
     working_directory: ~/hugo
     environment:
       HUGO_BUILD_DIR: ~/hugo/public
