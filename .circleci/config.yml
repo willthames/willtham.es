@@ -1,0 +1,44 @@
+---
+version: 2
+jobs:
+  build:
+    docker:
+      - image: cibuilds/hugo:latest
+    working_directory: ~/hugo
+    environment:
+      HUGO_BUILD_DIR: ~/hugo/public
+    steps:
+      # checkout the repository
+      - checkout
+
+      # install git submodules for managing third-party dependencies
+      - run: git submodule sync && git submodule update --init
+
+      # build with Hugo
+      - run: HUGO_ENV=production hugo -v -d $HUGO_BUILD_DIR
+
+  deploy:
+    docker:
+      - image: cibuilds/hugo:latest
+    working_directory: ~/hugo
+    environment:
+      HUGO_BUILD_DIR: ~/hugo/public
+      # `deploy` step: identical to a `run` step, but uses only one container:
+      # /docs/2.0/configuration-reference/#deploy
+    steps:
+      - deploy:
+          name: deploy to AWS
+          command: |
+            aws s3 sync $HUGO_BUILD_DIR s3://willtham.es/ --delete
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - deploy:
+          filters:
+            branches:
+              only: master
+          requires:
+            - build
