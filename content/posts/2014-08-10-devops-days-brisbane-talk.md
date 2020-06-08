@@ -5,7 +5,7 @@ date = 2014-08-10T14:41:00Z
 At [Devops Days Brisbane](http://devopsdays.org/events/2014-brisbane/) I gave a talk called
 "Designing and Devoloping Software for Operations", providing my thoughts and advice to 
 help write software that is easy to operate.
-
+<!--more-->
 * [Slides](/devopsdays2014/)
 * [Video](http://vimeo.com/102193214)
 

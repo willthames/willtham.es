@@ -4,7 +4,7 @@ date = 2016-07-21T12:40:00Z
 +++
 Tonight we had the first [Ansible Brisbane Meetup](https://www.meetup.com/en-AU/Ansible-Brisbane/).
 It was relatively well attended, and there were a lot of interesting questions following the talks.
-
+<!--more-->
 I spoke first, on [What Ops Can Learn from Dev](/ansible-brisbane-07-2016/#/),
 an Ansible-tailored talk about applying software development practices to configuration management.
 

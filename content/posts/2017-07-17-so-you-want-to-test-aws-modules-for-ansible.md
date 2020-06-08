@@ -5,7 +5,7 @@ date = 2017-07-17T20:00:00Z
 
 {{<alert class="info">}}
 This page was updated on 2018-02-28 to better document IAM policy changes,
-the aliases file, YAML anchors for testing credentials</div>
+the aliases file, YAML anchors for testing credentials
 {{</alert>}}
 
 You're a (prospective) contributor to Ansible, and you have some
@@ -16,6 +16,8 @@ people's future enhancements won't break your desired behaviour.
 The standard tests for AWS modules are integration tests as most
 of them rely on creating some resources in AWS, updating them, and
 then cleaning up afterwards.
+
+<!--more-->
 
 I'll start this post from absolute first principles&mdash;I'll use
 a shiny new Fedora 26 vagrant VM.

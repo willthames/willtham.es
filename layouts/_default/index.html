@@ -8,7 +8,9 @@
       <ul>
         {{ range .Site.RegularPages }}
           <li>
-              <a href="{{.Permalink}}">{{.Date.Format "2006-01-02"}} | {{.Title}}</a>
+            <a class="linktitle" href="{{.Permalink}}">{{.Title}}</a>
+            <p>{{.Summary}}</p>
+            <p class="date">{{.Date.Format "02 Jan 2006"}}</p>
           </li>
         {{ end }}
       </ul>

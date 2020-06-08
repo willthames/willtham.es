@@ -5,7 +5,7 @@ date = 2016-03-11T16:05:00Z
 I was sitting with a colleague helping with some Ansible stuff and I couldn't
 help noticing his playbook runs were taking a minute before the first
 connection to a host.
-
+<!--more-->
 This is not normal. Even in a reasonable size environment with a few hundred
 hosts in inventory, startup times are typically of the order of a few seconds.
 

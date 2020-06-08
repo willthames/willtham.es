@@ -5,7 +5,7 @@ date = 2014-04-17T11:25:00Z
 Ansible's [unarchive module](http://docs.ansible.com/unarchive_module.html) has been around a while but
 it's not always been suitable for use on archives local to the destination node (especially when running
 ansible-playbook on the destination host using the local connection. There are two key elements to this tip:
-
+<!--more-->
 {{<alert class="info">}}
 Use <code>copy=no</code> to ensure that no attempt is made to copy the archive from the host running ansible to the destination node
 {{</alert>}}

@@ -6,7 +6,7 @@ Inspired by my recent efforts to handcraft Ansible inventory graphs,
 and wanting to be able to quickly see what groups are used for 
 a particular host in Ansible inventory, I decided to generate some
 graphs.
-
+<!--more-->
 There is a useful discussion on [ansible-devel](https://groups.google.com/forum/?fromgroups#!topic/ansible-devel/mEovLhqWTV0) and I know [@svg](http://twitter.com/svg) is doing more work on improving ansible inventory so hopefully things 
 will yet get easier. 
 

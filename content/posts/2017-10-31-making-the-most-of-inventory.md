@@ -6,7 +6,7 @@ When using Ansible to consume APIs such as cloud services, the
 logic runs from the controller machine. As a result, people tend
 to think that as this runs locally, using `hosts: localhost` is
 the best option.
-
+<!--more-->
 In reality, using `localhost` as your host loses you a lot of power.
 To avoid this, we can use a 'runner' pattern, where a runner
 is a local target on which you can hang inventory.

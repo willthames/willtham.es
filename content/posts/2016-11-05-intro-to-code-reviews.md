@@ -5,7 +5,7 @@ date = 2016-11-07T11:30:00Z
 Most software development teams have long been doing code reviews, and
 while it's not uncommon amongst system administrators, 
 it's not universally practised.
-
+<!--more-->
 ## Why do code reviews
 
 Constructive code reviews are a means of ensuring the quality

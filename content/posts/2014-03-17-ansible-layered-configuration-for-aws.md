@@ -5,7 +5,7 @@ date = 2014-03-17T18:34:00Z
 [Ansible](http://ansible.com/)'s system for managing configuration of hosts is
 inventory. The documentation on inventory - both static and dynamic - is a 
 good reference but I'd like to provide further context through example. 
-
+<!--more-->
 First, some background. Configuring systems and applications can be very simple. Particularly
 if you only have one or two. Then you can check the configuration into version control on a per
 host basis, and just manage changes as they come. However, when you have applications in the

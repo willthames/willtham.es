@@ -6,7 +6,7 @@ I realise I have quite strong opinions on the `command` and
 `shell` modules in Ansible. There are now four independent checks in
 [ansible-lint](https://github.com/willthames/ansible-lint) for ways to
 use the modules badly. Let me count the ways...
-
+<!--more-->
 ### Using command/shell instead of a better module
 
 There are a number of modules that can be used instead of commands.

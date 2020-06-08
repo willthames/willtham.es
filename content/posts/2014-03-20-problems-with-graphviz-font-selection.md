@@ -6,7 +6,7 @@ When tweeting about my recent [Ansible post](/2014/03/17/ansible-layered-configu
 I mentioned that graphviz selection problems were the cause of some delay. [@magneticnorth](https://twitter.com/magneticnorth)
 responded that it was dismaying given the size of the underlying font handling libraries. So I thought I'd give a more detailed
 breakdown.
-
+<!--more-->
 First, let's give it some context.
 
 The [inventory image](/images/inventory.png) was generated using graphviz's dot from 

@@ -9,7 +9,7 @@ local`, `delegate_to: localhost` and `local_action`. The last is rarely seen the
 days and can be deemed equivalent to `delegate_to: localhost` in terms of
 advantages and disadvantages, but with the additional disadvantage of being
 a very unusual style, adding a readability penalty.
-
+<!--more-->
 In a previous post I talked about the
 [runner pattern](/2017/10/31/making-the-most-of-inventory.html)
 which allows better use of inventory for different scenarios even when the

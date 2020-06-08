@@ -5,7 +5,7 @@ date = 2015-01-31T11:00:00Z
 I noticed at work recently that Ansible seemed to be taking a really long
 time. On further inspection of the start and end time of tasks, each task
 seemed to be taking three seconds.
-
+<!--more-->
 This isn't a parallelisation problem - this was on a single host. And when
 you have hundreds of tasks scattered across various roles, and their
 dependencies, included by a single playbook, then you have a problem.

@@ -13,7 +13,7 @@ The initial premises are these:
 * Roles are versioned rather than playbooks
 * Roles MUST be versioned before being used in production
 * Production environments MUST specify explicit role versions (not HEAD)
-
+<!--more-->
 Roles are versioned using git tagging, and these versions are specified
 in the roles specification files (rolesfile) associated with a playbook.
 

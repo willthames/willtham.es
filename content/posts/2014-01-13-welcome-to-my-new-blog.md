@@ -5,7 +5,7 @@ date = 2014-01-13T21:48:00Z
 A new year brings a new blog. I've been doing lots of cool things recently in
 the world of tech, particularly with AWS and Ansible, and it's time to write 
 some of my learnings down so that others can benefit. 
-
+<!--more-->
 My [other blog](http://will.thames.id.au/) will remain dedicated to the world
 of endurance sport. 
 

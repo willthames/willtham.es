@@ -11,7 +11,7 @@ We do versioning for the following reasons:
 * Ensure playbooks to have the same effect, even when run months later
 * Roles may be updated without worrying about breaking earlier
   playbooks that rely on them
-
+<!--more-->
 Even while writing the post I thought that source control versioning 
 should be part of the solution but I didn't have an easy
 way to include roles with a specific tag or branch in a playbook.

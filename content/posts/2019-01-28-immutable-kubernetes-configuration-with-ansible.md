@@ -7,7 +7,7 @@ Ansible](https://www.ansible.com/managing-kubernetes-is-easy-with-ansible)
 talk that I gave at AnsibleFest 2018.
 Since giving that talk, I've also solved some of the unforeseen consequences,
 and go into further detail here.
-
+<!--more-->
 There are a number of problems associated with managing configuration (in the
 form of configmaps and secrets) through the default mechanism.
 

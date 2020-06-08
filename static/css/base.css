@@ -85,3 +85,11 @@ ul, ol {
 .l-footer img {
     vertical-align: middle;
 }
+
+.date {
+  font-variant: small-caps;
+}
+
+.linktitle {
+  font-size: larger;
+}

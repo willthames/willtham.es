@@ -7,7 +7,7 @@ a companion talk to [last year's](/2014/08/10/devops-days-brisbane-talk.html) ta
 This year's is called "What Operations can learn from Developers" and talks about
 how Ops can make use of the same practices and techniques that developers use
 to maintain great code.
-
+<!--more-->
 * [Slides](/devopsdays2015/) \[[pdf](/What Ops can learn from Dev.pdf)\]
 * Video - to be added
 

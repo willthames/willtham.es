@@ -5,7 +5,7 @@ date = 2018-02-28T20:00:00Z
 While there are ways of managing multiple AWS account consoles in a single browser
 (such as assuming roles to access other accounts), various constraints might prevent that
 (e.g. accounts owned by third parties to which access should be segregated).
-
+<!--more-->
 Most people in this situation have done the 'browser juggle', where you might have
 Firefox open with another window in Safe mode, Chrome open with another window in
 Incognito mode, and no doubt further browsers depending upon your OS.

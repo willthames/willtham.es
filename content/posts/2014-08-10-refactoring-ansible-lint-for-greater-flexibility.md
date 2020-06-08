@@ -5,7 +5,7 @@ date = 2014-08-10T17:36:00Z
 I first wrote [ansible-lint](http://github.com/willthames/ansible-lint) nearly a year ago.
 The aim behind my implementation was to be able to spot common antipatterns and indeed bugs
 and report them to users. 
-
+<!--more-->
 I've had a few contributions to ansible-lint, particularly in the last few months, that 
 have increased its capability but I'm running into more and more limitations. 
 

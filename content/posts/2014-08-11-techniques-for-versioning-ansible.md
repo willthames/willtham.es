@@ -4,7 +4,7 @@ date = 2014-08-11T20:56:00Z
 +++
 First, let's start with the why. With source control and inventory, do we actually need
 to version Ansible playbooks or roles?
-
+<!--more-->
 In an environment with multiple development teams with their own requirements, we want
 to ensure that different teams don't trample on each others toes.
 

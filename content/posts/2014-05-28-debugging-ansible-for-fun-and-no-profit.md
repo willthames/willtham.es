@@ -3,7 +3,7 @@ title = "Debugging Ansible for fun and no profit"
 date = 2014-04-28T15:19:00Z
 +++
 A colleague reported some strange behaviour regarding Ansible, in particular with `pgrep` and `pkill` in the shell module.
-
+<!--more-->
 I created a simplish test-case (I could have made it simpler but wanted to make it safish for other people to use)
 
 ```yaml

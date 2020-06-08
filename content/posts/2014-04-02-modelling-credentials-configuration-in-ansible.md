@@ -6,7 +6,7 @@ One of the most common things to configure in an application is some kind
 of credentials based connection. Typically this will be to a database or 
 an API endpoint, but it doesn't really matter too much - the examples in
 this post will be database configuration, but the principles are the same.
-
+<!--more-->
 I'll use the same example from the 
 [previous blog post](/2014/03/17/ansible-layered-configuration-for-aws.html)
 and also put the configuration into the same
@@ -79,7 +79,7 @@ storedb will have similar properties.
 
 {{<alert class="info">}}
 Set <a href="http://docs.ansible.com/intro_configuration.html#hash-behaviour">hash_behaviour</a> to merge for this to work
-{{</alert}
+{{</alert>}}
 
 ### inventory/group_vars/all.yml
 ```yaml

@@ -7,7 +7,7 @@ is coming up to the three month anniversary of the first commit,
 and I've given it little publicity other than an
 [ignite talk](http://willthames.github.io/devops-bris-ignite/#/) at the last
 [DevOps Brisbane Meetup](http://www.meetup.com/Devops-Brisbane/).
-
+<!--more-->
 `ansible-review` is a code review tool for Ansible. A lot of the work that was
 done in the `ansible-lint` 3.0 release was to accommodate `ansible-review`,
 including some new rules, and some tidy ups that allow better reuse of the
