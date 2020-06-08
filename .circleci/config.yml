@@ -27,7 +27,7 @@ jobs:
 
   deploy:
     docker:
-      - image: amazon/aws-cli:latest
+      - image: willthames/aws-cli-plus-tar:latest
     working_directory: ~/hugo
     environment:
       HUGO_BUILD_DIR: public
